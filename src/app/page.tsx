@@ -155,7 +155,7 @@ export default function Page() {
           <BlurFade delay={BLUR_FADE_DELAY * 16}>
             <div className="space-y-3">
               <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
-                Contact
+                Contact Me
               </div>
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
                 Get in Touch

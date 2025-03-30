@@ -3,10 +3,10 @@ import { HomeIcon, NotebookIcon } from "lucide-react";
 
 export const DATA = {
   name: "Sourav Pathak",
-  initials: "DV",
+  initials: "SP",
   url: "https://www.devsourav.online",
   location: "West Bengal, India",
-  locationLink: "https://www.google.com/maps/place/sanfrancisco",
+  locationLink: "",
   description:
     "Software Engineer & Mentor | Passionate about building, fixing, and debugging. Always up for tech talk and very active on LinkedIn. ",
   summary: (
@@ -51,14 +51,18 @@ export const DATA = {
     "Googling",
     "Prompt Engineering",
   ],
-  navbar: [
-    { href: "/", icon: HomeIcon, label: "Home" },
-    { href: "/blog", icon: NotebookIcon, label: "Blog" },
-  ],
+  navbar: [{ href: "/", icon: HomeIcon, label: "Home" }],
   contact: {
     email: "devsourav0809@gmail.com",
     tel: "+91 6294543902",
     social: {
+      Resume: {
+        name: "Resume",
+        url: "https://drive.google.com/drive/folders/10K6ZtQeY3RXx94pwTQo7KyM_Q28hiDTY?usp=sharing",
+        icon: NotebookIcon,
+
+        navbar: true,
+      },
       GitHub: {
         name: "GitHub",
         url: "https://github.com/sourav0809",
@@ -73,25 +77,12 @@ export const DATA = {
 
         navbar: true,
       },
-      X: {
-        name: "X",
-        url: "https://dub.sh/dillion-twitter",
-        icon: Icons.x,
 
-        navbar: true,
-      },
-      Youtube: {
-        name: "Youtube",
-        url: "https://dub.sh/dillion-youtube",
-        icon: Icons.youtube,
-        navbar: true,
-      },
-      email: {
+      Email: {
         name: "Send Email",
-        url: "#",
+        url: "mailto:devsourav0809@gmail.com",
         icon: Icons.email,
-
-        navbar: false,
+        navbar: true,
       },
     },
   },
@@ -139,8 +130,8 @@ export const DATA = {
     },
     {
       school: "Simlapal M.M High School",
-      href: "https://wlu.ca",
-      degree: "Higher Secondary",
+      href: "https://school.banglarshiksha.gov.in/ws/website/index/19132004504",
+      degree: "Higher Secondary (10+2)",
       logoUrl: "/school.png",
       start: "2019",
       end: "2020",
