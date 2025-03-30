@@ -5,7 +5,9 @@ import { ProjectCard } from "@/components/project-card";
 import { ResumeCard } from "@/components/resume-card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { DATA } from "@/data/resume";
+import { Download } from "lucide-react";
 import Link from "next/link";
 
 const BLUR_FADE_DELAY = 0.04;
@@ -28,6 +30,16 @@ export default function Page() {
                 delay={BLUR_FADE_DELAY}
                 text={DATA.description}
               />
+              <BlurFade delay={BLUR_FADE_DELAY}>
+                <a
+                  className="flex items-center gap-2 mt-2 w-fit text-sm bg-black text-white px-4 py-1.5 dark:bg-white dark:text-black dark:hover:bg-gray-200 rounded-md  transition-all duration-300 ease-in-out"
+                  href={DATA.contact.social.Resume.url}
+                  target="_blank"
+                >
+                  <span>Resume</span>
+                  <Download size={16} />
+                </a>
+              </BlurFade>
             </div>
             <BlurFade delay={BLUR_FADE_DELAY}>
               <Avatar className="size-28 border">
