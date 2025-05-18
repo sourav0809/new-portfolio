@@ -7,14 +7,12 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { DATA } from "@/data/resume";
 import { Download } from "lucide-react";
-import { Analytics } from "@vercel/analytics/next";
 
 const BLUR_FADE_DELAY = 0.04;
 
 export default function Page() {
   return (
     <>
-      <Analytics />
       <main className="flex flex-col min-h-[100dvh] space-y-10">
         <section id="hero">
           <div className="mx-auto w-full max-w-2xl space-y-8">
