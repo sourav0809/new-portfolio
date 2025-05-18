@@ -29,7 +29,7 @@ export const ResumeCard = ({
   period,
   description,
 }: ResumeCardProps) => {
-  const [isExpanded, setIsExpanded] = React.useState(false);
+  const [isExpanded, setIsExpanded] = React.useState(true);
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     if (description) {
@@ -98,9 +98,13 @@ export const ResumeCard = ({
                 duration: 0.7,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="mt-2 text-xs sm:text-sm"
+              className="mt-2 text-xs sm:text-sm whitespace-normal w-full flex flex-col gap-1"
             >
-              {description}
+              {description
+                .split("•")
+                .map((item, index) =>
+                  item.trim() ? <li key={index}>{item.trim()}</li> : null
+                )}
             </motion.div>
           )}
         </div>

@@ -97,7 +97,16 @@ export const DATA = {
       logoUrl: "/sharpenerLogo.png",
       start: "Nov 2024",
       end: "Current",
-      description: "",
+      description: `• Rebuilt the landing page with Next.js and ShadCN UI, boosting performance score from 40 to 90+ and improving UX, speed, and SEO.
+      • Developed a Mentor Activity Tracker to monitor mentor performance (classes taken, missed, canceled) and integrated student feedback with cron jobs for automation.
+      • Enabled Zero Downtime Deployment for frontend apps, ensuring seamless releases without server interruptions.
+      • Launched a Communication Task using OpenAI and React Speech Recognition for AI-powered spoken English feedback.
+      • Built a real-time CSS Compiler to help students visualize and test CSS code interactively.
+      • Revamped the Task Page UI/UX, cutting load time by 45% and boosting user retention by 60%.
+      • Integrated Live Doubt Support using Chatwoot with smart routing to enhance query resolution speed.
+      • Created an Interactive Guide for SnapIt AI Resume Maker using Shepherd.js, reducing onboarding costs by $900/year.
+      • Developed Dynamic Feedback Forms that adapt based on conditions, paired with a dashboard for efficient analysis.
+      • Contributed through code reviews, bug fixes, manual testing, and implementation of new features.`,
     },
     {
       company: "Sharpener",
@@ -108,7 +117,11 @@ export const DATA = {
       logoUrl: "/sharpenerLogo.png",
       start: "March 2024",
       end: "Nov 2024",
-      description: "",
+      description: `• Redesigned 25+ admin dashboard pages using Material UI and Tailwind CSS.
+      • Integrated the Sharpener Game with the Student Portal using Framer Motion for engaging animations.
+      • Migrated the mobile app from Expo to React Native CLI and added Firebase notifications for real-time alerts.
+      • Revamped 30+ student dashboard cards with GSAP and Framer Motion for smooth UX animations.
+      • Resolved bugs, built new features, enhanced existing ones, and conducted manual & smoke testing.`,
     },
   ],
   education: [
