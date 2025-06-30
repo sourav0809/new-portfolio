@@ -9,6 +9,50 @@ import { ChevronRightIcon } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
+const boldify = (text: string) => {
+  const keywords = [
+    "Next.js",
+    "ShadCN UI",
+    "Gemini",
+    "LangChain",
+    "LangGraph",
+    "LangSmith",
+    "Internal PR reviewer",
+    "Mentor Activity Tracker",
+    "Zero Downtime Deployment",
+    "AI-powered communication task",
+    "CSS Compiler",
+    "Task Page UI/UX",
+    "live chat support",
+    "Interactive Guide",
+    "Dynamic Feedback Forms",
+    "microservice",
+    "Material UI",
+    "Tailwind CSS",
+    "React Native CLI",
+    "Firebase notifications",
+    "mobile app from Expo",
+    "reducing onboarding costs by \\$900 annually",
+    "cron jobs for automated tracking",
+    "increase user retention by 60 %",
+    "reduce page load time by 45",
+    "AWS Lambda",
+    "SQS",
+    "API Gateway",
+    "Bento Grid Layout",
+  ];
+
+  let result = text;
+  keywords.forEach((word) => {
+    const regex = new RegExp(`(${word})`, "gi");
+    result = result.replace(
+      regex,
+      `<span class="font-medium text-foreground">${word}</span>`
+    );
+  });
+
+  return result;
+};
 interface ResumeCardProps {
   logoUrl: string;
   altText: string;
@@ -103,13 +147,22 @@ export const ResumeCard = ({
                 duration: 0.7,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="mt-2 text-xs sm:text-sm whitespace-normal w-full flex flex-col gap-1"
+              className="mt-2 text-xs sm:text-sm whitespace-normal w-full flex flex-col gap-x-1 gap-y-2"
             >
-              {description
-                .split("•")
-                .map((item, index) =>
-                  item.trim() ? <li key={index}>{item.trim()}</li> : null
-                )}
+              {description.split("•").map((item, index) => {
+                const trimmed = item.trim();
+                if (!trimmed) return null;
+
+                return (
+                  <li
+                    key={index}
+                    className="leading-snug"
+                    dangerouslySetInnerHTML={{
+                      __html: boldify(trimmed),
+                    }}
+                  />
+                );
+              })}
             </motion.div>
           )}
         </div>
