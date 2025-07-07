@@ -260,30 +260,5 @@ testing to ensure system reliability.`,
       image: "/mailbox-1.png",
       video: "",
     },
-    {
-      title: "The Generics",
-      href: "/",
-      dates: "April 2023 - March 2024",
-      active: true,
-      description:
-        "Movie search app with a user-friendly interface. Users can search for movies, view details, and add them to their favorites. The app uses the TMDB API for movie data and Firebase for user authentication and favorites management.",
-      technologies: [
-        "React",
-        "Redux Toolkit",
-        "Firebase",
-        "Tailwind",
-        "React Router",
-        "Material UI",
-      ],
-      links: [
-        {
-          type: "Website",
-          href: "/",
-          icon: <Icons.globe className="size-3" />,
-        },
-      ],
-      image: "/movie-1.png",
-      video: "",
-    },
   ],
 } as const;
