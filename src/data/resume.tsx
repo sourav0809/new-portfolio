@@ -198,6 +198,7 @@ export const DATA = {
         "Tailwind CSS",
         "ShadCN",
         "Redux Toolkit",
+        "Node.js",
         "Express",
         "TypeScript",
         "PostgreSQL",
