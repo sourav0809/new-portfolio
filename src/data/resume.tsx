@@ -187,6 +187,38 @@ export const DATA = {
       video: "",
     },
     {
+      title: "Trackify",
+      href: "https://trackify.devsourav.online/",
+      dates: "June 2025 - July 2025",
+      active: true,
+      description:
+        "A fully responsive and modern analytics dashboard built with Next.js, Tailwind CSS, ShadCN, Redux Toolkit featuring real-time charts, user authentication, and layout customization. The backend is powered by Express, TypeScript, and PostgreSQL.",
+      technologies: [
+        "Next.js",
+        "Tailwind CSS",
+        "ShadCN",
+        "Redux Toolkit",
+        "Express",
+        "TypeScript",
+        "PostgreSQL",
+        "Sequelize",
+      ],
+      links: [
+        {
+          type: "Website",
+          href: "https://trackify.devsourav.online/",
+          icon: <Icons.globe className="size-3" />,
+        },
+        {
+          type: "Source",
+          href: "https://github.com/sourav0809/trackify-sales-dashboard",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "/salesDashboard.png",
+      video: "",
+    },
+    {
       title: "Expencify",
       href: "https://expencify.netlify.app/",
       dates: "July 2023 - Aug 2023",
