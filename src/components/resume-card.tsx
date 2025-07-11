@@ -12,6 +12,7 @@ import React from "react";
 const boldify = (text: string) => {
   const keywords = [
     "Next.js",
+    "90%",
     "ShadCN UI",
     "Gemini",
     "LangChain",
@@ -32,14 +33,17 @@ const boldify = (text: string) => {
     "React Native CLI",
     "Firebase notifications",
     "mobile app from Expo",
-    "reducing onboarding costs by \\$900 annually",
+    "$900 annually",
     "cron jobs for automated tracking",
     "increase user retention by 60 %",
-    "reduce page load time by 45",
+    "45%",
+    "40%",
+    "60%",
     "AWS Lambda",
     "SQS",
     "API Gateway",
     "Bento Grid Layout",
+    "25+",
   ];
 
   let result = text;

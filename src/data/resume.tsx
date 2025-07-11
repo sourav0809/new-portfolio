@@ -96,34 +96,20 @@ export const DATA = {
       title: "SDE 1",
       logoUrl: "/sharpenerLogo.png",
       start: "Nov 2024",
-      end: "Current",
-      description: `• Rebuilt the landing page with Next.js and ShadCN UI boosting performance score from 40 to 90+ and
-      improving UX, speed, and SEO.
-      • Created an Internal PR reviewer using Gemini, LangChain, LangGraph, and LangSmith that automatically
-      checked pull requests and suggested code improvements to speed up and simplify the review process.
-      • Developed a Mentor Activity Tracker to monitor mentor performance, including tracking classes taken,
-      missed, and canceled. Integrated student feedback for live classes and mock interviews, providing mentors
-      with insights to improve. cron jobs for automated tracking.
-      • Enabled Zero Downtime Deployment for frontend applications, allowing seamless feature releases and bug
-      fixes without server downtime, ensuring a smooth user experience.
-      • Created an AI-powered communication task using Gemini’s Speech-to-Text and Text-to-Speech, where
-      students could practice speaking English and receive real-time, friendly feedback to improve their
-      communication.
-      • Built a CSS Compiler for students, allowing them to write, test, and visualize CSS code in real-time, making
-      learning more interactive and efficient.
-      • Revamped the Task Page UI/UX, optimizing performance to reduce page load time by 45 % and increase
-      user retention by 60 % resulting in a smoother and more engaging experience.
-      • Added live chat support using Chatwoot with smart routing to connect students to the right agent faster.
-      Also set up alerts using AWS Lambda, SQS, and API Gateway to notify users when an agent replies.
-      • Built an Interactive Guide for SnapIt AI Resume Maker with Shepherd.js, reducing onboarding costs by
-      $900 annually.
-      • Developed Dynamic Feedback Forms that adapt based on different conditions, ensuring seamless data
-      collection from students. Designed an engaging dashboard with multiple filters to analyze feedback efficiently.
-
-      • Created a Bento Grid Layout for the dashboard — admin can set up the layout and arrange the dashboard cards accordingly.
-
-      • Done the first set of code reviews, fixed bugs, improved existing features, implemented new features, worked
-      on manual testing, etc.`,
+      end: "Present",
+      description: `
+              • Rebuilt the landing page using Next.js and ShadCN UI, increasing performance score from 40% to over 90%, resulting in better UX, speed, and SEO.
+              • Created an Internal PR reviewer using Gemini, LangChain, LangGraph, and LangSmith that automatically checked pull requests and suggested code improvements to speed up and simplify the review process.
+              • Built a separate Auth Service using a microservice approach to handle login across multiple products, making authentication easier to manage and scale.
+              • Developed a Mentor Activity Tracker to monitor mentor performance, including tracking classes taken, missed, and canceled. Integrated student feedback for live classes and mock interviews, providing mentors with insights to improve. cron jobs for automated tracking.
+              • Enabled Zero Downtime Deployment for frontend applications, allowing seamless feature releases and bug fixes without server downtime, ensuring a smooth user experience.
+              • Developed an AI-powered communication task by using Google Speech-to-Text, Text-to-Speech, and Gemini, enabling students to practice spoken English and receive real-time, friendly feedback to improve their communication skills.
+              • Revamped the Task Page UI/UX, optimizing performance to reduce page load time by 45% and increase user retention by 60% resulting in a smoother and more engaging experience.
+              • Added live chat support using Chatwoot with smart routing to connect students to the right agent faster. Also set up alerts using AWS Lambda, SQS, and API Gateway to notify users when an agent replies.
+              • Built an Interactive Guide for SnapIt AI Resume Maker with Shepherd.js, reducing onboarding costs by $900 annually.
+              • Developed Dynamic Feedback Forms that adapt based on different conditions, ensuring seamless data collection from students. Designed an engaging dashboard with multiple filters to analyze feedback efficiently.
+              • Created a Bento Grid Layout for the dashboard — admin can set up the layout and arrange the dashboard cards accordingly.
+              • Done the first set of code reviews, fixed bugs, improved existing features, implemented new features, worked on manual testing, etc.`,
     },
     {
       company: "Sharpener",
@@ -134,13 +120,12 @@ export const DATA = {
       logoUrl: "/sharpenerLogo.png",
       start: "March 2024",
       end: "Nov 2024",
-      description: `• Built a separate Auth Service using a microservice approach to handle login across multiple products, making
-authentication easier to manage and scale.
-• Redesigned 25+ admin dashboard pages using Material UI and Tailwind CSS.
-• Migrated the Sharpener mobile app from Expo to React Native CLI, improving performance and stability.
-Integrated Firebase notifications for real-time alerts.
-• Resolved bugs, enhanced existing features, developed new functionalities, and conducted manual and smoke
-testing to ensure system reliability.`,
+      description: `
+          • Built a CSS Compiler for students, allowing them to write, test, and visualize CSS code in real-time, making learning more interactive and efficient.
+          • Redesigned 25+ admin dashboard pages using Material UI and Tailwind CSS.
+          • Migrated the Sharpener mobile app from Expo to React Native CLI, improving performance and stability. Integrated Firebase notifications for real-time alerts.
+          • Resolved bugs, enhanced existing features, developed new functionalities, and conducted manual and smoke testing to ensure system reliability.
+          • Done the first set of code reviews, fixed bugs, improved existing features, implemented new features, worked on manual testing, etc.`,
     },
   ],
   education: [
