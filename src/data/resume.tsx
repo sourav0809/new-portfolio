@@ -124,8 +124,7 @@ export const DATA = {
           • Built a CSS Compiler for students, allowing them to write, test, and visualize CSS code in real-time, making learning more interactive and efficient.
           • Redesigned 25+ admin dashboard pages using Material UI and Tailwind CSS.
           • Migrated the Sharpener mobile app from Expo to React Native CLI, improving performance and stability. Integrated Firebase notifications for real-time alerts.
-          • Resolved bugs, enhanced existing features, developed new functionalities, and conducted manual and smoke testing to ensure system reliability.
-          • Done the first set of code reviews, fixed bugs, improved existing features, implemented new features, worked on manual testing, etc.`,
+          • Resolved bugs, enhanced existing features, developed new functionalities, and conducted manual and smoke testing to ensure system reliability.`,
     },
   ],
   education: [
