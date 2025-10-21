@@ -98,7 +98,7 @@ export const DATA = {
       start: "Nov 2024",
       end: "Present",
       description: `
-              • Built an AI exam evaluation system using Gemini, Lambda, and SQS that grades over 100 student answer sheets in less than 10 minutes and provides detailed feedback for every student answer and each question.
+              • Built an AI exam evaluation platform using Gemini, Lambda, and SQS that grades over 100 student answer sheets in less than 10 minutes and provides detailed feedback for every student answer and each question.
               • Rebuilt the landing page using Next.js and ShadCN UI, increasing performance score from 40% to over 90%, resulting in better UX, speed, and SEO.
               • Created an Internal PR reviewer using Gemini, LangChain, LangGraph, and LangSmith that automatically checked pull requests and suggested code improvements to speed up and simplify the review process.
               • Built a separate Auth Service using a microservice approach to handle login across multiple products, making authentication easier to manage and scale.
