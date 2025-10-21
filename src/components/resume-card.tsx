@@ -13,11 +13,14 @@ const boldify = (text: string) => {
   const keywords = [
     "Next.js",
     "90%",
+    "Lambda",
+    "SQS",
     "ShadCN UI",
     "Gemini",
     "LangChain",
     "LangGraph",
     "LangSmith",
+    "10 minutes",
     "Internal PR reviewer",
     "Mentor Activity Tracker",
     "Zero Downtime Deployment",
@@ -51,7 +54,7 @@ const boldify = (text: string) => {
     const regex = new RegExp(`(${word})`, "gi");
     result = result.replace(
       regex,
-      `<span class="font-medium text-foreground">${word}</span>`
+      `<span class="font-semibold text-foreground">${word}</span>`
     );
   });
 
