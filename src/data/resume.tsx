@@ -20,7 +20,7 @@ export const DATA = {
       most helpful mentors there!
     </p>
   ),
-  avatarUrl: "/me.png",
+  avatarUrl: "/me.jpeg",
   skills: [
     "HTML",
     "CSS",
