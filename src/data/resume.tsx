@@ -156,6 +156,37 @@ export const DATA = {
   ],
   projects: [
     {
+      title: "OpenChat",
+      href: "https://openchat.itssourav.online/",
+      dates: "Nov 2025 - Dec 2025",
+      active: true,
+      description:
+        "An AI-powered chat application with real-time streaming responses, multi-session conversations, and agent-based tools for weather, stocks, and Formula 1 insights. Includes secure GitHub & Google OAuth, persistent chat history, and a clean, responsive UI.",
+      technologies: [
+        "Next Js",
+        "Next Auth",
+        "Drizzle ORM",
+        "Neon DB",
+        "Vercel Agent SDK",
+        "TailwindCSS",
+        "ShadCN UI",
+      ],
+      links: [
+        {
+          type: "Website",
+          href: "https://openchat.itssourav.online/",
+          icon: <Icons.globe className="size-3" />,
+        },
+        {
+          type: "Source",
+          href: "https://github.com/sourav0809/openchat",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "/openchat.png",
+      video: "",
+    },
+    {
       title: "RedBubble",
       href: "https://redbubble.vercel.app",
       dates: "Aug 2023 - Sep 2023",
@@ -188,7 +219,7 @@ export const DATA = {
     },
     {
       title: "Trackify",
-      href: "https://trackify.devsourav.online/",
+      href: "https://trackify.itssourav.online/",
       dates: "June 2025 - July 2025",
       active: true,
       description:
@@ -207,7 +238,7 @@ export const DATA = {
       links: [
         {
           type: "Website",
-          href: "https://trackify.devsourav.online/",
+          href: "https://trackify.itssourav.online/",
           icon: <Icons.globe className="size-3" />,
         },
         {
