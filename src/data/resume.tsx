@@ -327,7 +327,7 @@ export const DATA = {
       avatarUrl: "/yash.jpeg",
       linkedinUrl: "https://www.linkedin.com/in/yash-prasad-262457128/",
       recommendation:
-        "Sourav was one of our best and sincere developers. Always open to feedback and willingness to learn. He has a great hustle mindset and he worked with great ownership in all his tasks.",
+        "Sourav was one of our best and sincere developer. Always open to feedback and willingness to learn. He has a great hustle mindset and he worked with great ownership in all his tasks.",
     },
     {
       name: "Rajesh Singha Mahapatra",
