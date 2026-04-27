@@ -2,6 +2,7 @@ import { HackathonCard } from "@/components/hackathon-card";
 import BlurFade from "@/components/magicui/blur-fade";
 import BlurFadeText from "@/components/magicui/blur-fade-text";
 import { ProjectCard } from "@/components/project-card";
+import { RecommendationCard } from "@/components/recommendation-card";
 import { ResumeCard } from "@/components/resume-card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
@@ -55,6 +56,40 @@ export default function Page() {
           </BlurFade>
           <BlurFade delay={BLUR_FADE_DELAY * 4}>{DATA.summary}</BlurFade>
         </section>
+
+        <section id="recommendations">
+          <div className="flex min-h-0 flex-col gap-y-4">
+            <BlurFade delay={BLUR_FADE_DELAY * 4.5}>
+              <div className="space-y-2">
+                <h2 className="text-xl font-bold">
+                  💬 LinkedIn Recommendations
+                </h2>
+                <p className="text-sm text-muted-foreground max-w-[600px]">
+                  Kind words from the people and teams I&apos;ve had the
+                  privilege to collaborate with.
+                </p>
+              </div>
+            </BlurFade>
+            <div className="flex flex-col gap-4">
+              {DATA.recommendations.map((rec, id) => (
+                <BlurFade
+                  key={rec.name}
+                  delay={BLUR_FADE_DELAY * 5 + id * 0.1}
+                >
+                  <RecommendationCard
+                    name={rec.name}
+                    role={rec.role}
+                    relationship={rec.relationship}
+                    avatarUrl={rec.avatarUrl}
+                    recommendation={rec.recommendation}
+                    linkedinUrl={rec.linkedinUrl}
+                  />
+                </BlurFade>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section id="skills">
           <div className="flex min-h-0 flex-col gap-y-3">
             <BlurFade delay={BLUR_FADE_DELAY * 9}>

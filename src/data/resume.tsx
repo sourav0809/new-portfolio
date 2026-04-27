@@ -310,4 +310,33 @@ export const DATA = {
       video: "",
     },
   ],
+  recommendations: [
+    {
+      name: "Kaustubh Bhatter",
+      role: "Head of Product and Co-Founder of Sharpener | Ex-Titan (Directi), 123Stores",
+      relationship: "Kaustubh managed Sourav directly",
+      avatarUrl: "/kaustubh.png",
+      linkedinUrl: "https://www.linkedin.com/in/i-kaustubh/",
+      recommendation:
+        "Sourav worked with us as a developer and stood out for his ownership and execution.\n\nHe was quick to learn, comfortable across the stack, and particularly strong in Generative AI use cases. Give him a problem and he'll figure out a way to ship it.\n\nEasy to work with, proactive, and dependable—I'd recommend him to any team looking for a builder.",
+    },
+    {
+      name: "Yash Prasad",
+      role: "Founder at Sharpener | Fixing Education",
+      relationship: "Yash managed Sourav directly",
+      avatarUrl: "/yash.jpeg",
+      linkedinUrl: "https://www.linkedin.com/in/yash-prasad-262457128/",
+      recommendation:
+        "Sourav was one of our best and sincere developers. Always open to feedback and willingness to learn. He has a great hustle mindset and he worked with great ownership in all his tasks.",
+    },
+    {
+      name: "Rajesh Singha Mahapatra",
+      role: "Software Engineer @ VAII | Building AI Products | MERN, AWS, AI Agents",
+      relationship: "Rajesh worked with Sourav on the same team",
+      avatarUrl: "/rajesh.jpeg",
+      linkedinUrl: "https://www.linkedin.com/in/rajeshsmp/",
+      recommendation:
+        "Sourav and I worked together at Sharpener as SDE-1, and I can say with confidence that he is one of the most dedicated and reliable people I have worked with.\n\nHis expertise in the MERN stack and Generative AI is impressive, and what sets him apart is how quickly he can pick up new things and turn them into real working solutions. He has a natural ability to connect technology with real-world problems in a way that actually makes a difference.\n\nSourav took on AI-first projects and delivered results that directly contributed to Sharpener's 2x growth. He consistently managed multiple features at the same time without ever compromising on quality or commitment.\n\nIf you are looking for someone who is flexible, technically strong, and genuinely passionate about what they build, Sourav is your person. Whether it is product development, system architecture, or infrastructure, he brings the same level of ownership and drive to everything he works on.",
+    },
+  ],
 } as const;
