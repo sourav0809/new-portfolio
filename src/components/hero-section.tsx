@@ -2,6 +2,7 @@
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useDesktopMotion } from "@/hooks/use-desktop-motion";
+import { useSoundEffects } from "@/hooks/use-sound-effects";
 import { DATA } from "@/data/resume";
 import { gsap } from "gsap";
 import { Download } from "lucide-react";
@@ -11,6 +12,7 @@ const ROLE_LINE = "Software Engineer / Building AI-native products";
 
 export function HeroSection() {
   const isDesktopMotion = useDesktopMotion();
+  const { play } = useSoundEffects();
   const rootRef = useRef<HTMLDivElement>(null);
   const cursorRef = useRef<HTMLSpanElement>(null);
 
@@ -101,6 +103,8 @@ export function HeroSection() {
           className={`hero-cta ${revealClass} group mt-2 flex w-fit items-center gap-2 rounded-md bg-foreground px-4 py-2 text-sm font-medium text-background transition-colors duration-300 hover:bg-accent hover:text-accent-foreground`}
           href={DATA.contact.social.Resume.url}
           target="_blank"
+          onMouseEnter={() => play("hover")}
+          onClick={() => play("click")}
         >
           <span>Resume</span>
           <Download

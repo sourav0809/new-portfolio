@@ -1,4 +1,7 @@
+"use client";
+
 import { Badge } from "@/components/ui/badge";
+import { useSoundEffects } from "@/hooks/use-sound-effects";
 import { cn } from "@/lib/utils";
 import { ArrowUpRightIcon } from "lucide-react";
 import Image from "next/image";
@@ -34,14 +37,21 @@ export function ProjectCard({
   links,
   className,
 }: Props) {
+  const { play } = useSoundEffects();
+
   return (
     <div
       className={cn(
         "group flex h-full flex-col overflow-hidden rounded-lg border border-border bg-card transition-all duration-300 hover:border-accent/50 hover:shadow-[0_0_0_1px_hsl(var(--accent)/0.3)]",
         className
       )}
+      onMouseEnter={() => play("hover")}
     >
-      <Link href={href || "#"} className="relative block cursor-pointer">
+      <Link
+        href={href || "#"}
+        className="relative block cursor-pointer"
+        onClick={() => play("click")}
+      >
         {video && (
           <video
             src={video}
@@ -69,6 +79,7 @@ export function ProjectCard({
           <Link
             href={href || "#"}
             target="_blank"
+            onClick={() => play("click")}
             className="mt-0.5 shrink-0 text-muted-foreground opacity-0 transition-opacity duration-200 group-hover:opacity-100 hover:text-accent-text"
           >
             <ArrowUpRightIcon className="size-4" />
@@ -101,7 +112,12 @@ export function ProjectCard({
         {links && links.length > 0 && (
           <div className="flex flex-row flex-wrap items-start gap-1.5 border-t border-border pt-3">
             {links?.map((link, idx) => (
-              <Link href={link?.href} key={idx} target="_blank">
+              <Link
+                href={link?.href}
+                key={idx}
+                target="_blank"
+                onClick={() => play("click")}
+              >
                 <Badge
                   key={idx}
                   variant="outline"

@@ -2,6 +2,7 @@
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
+import { useSoundEffects } from "@/hooks/use-sound-effects";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { ArrowUpRightIcon, PlusIcon } from "lucide-react";
@@ -93,8 +94,12 @@ export const ResumeCard = ({
   isLast,
 }: ResumeCardProps) => {
   const [isExpanded, setIsExpanded] = React.useState(Boolean(isCurrent));
+  const { play } = useSoundEffects();
 
-  const toggleExpanded = () => setIsExpanded((prev) => !prev);
+  const toggleExpanded = () => {
+    play(isExpanded ? "collapse" : "expand");
+    setIsExpanded((prev) => !prev);
+  };
 
   return (
     <div className="relative flex gap-4 sm:gap-5">
@@ -120,6 +125,8 @@ export const ResumeCard = ({
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onMouseEnter={() => play("hover")}
+                  onClick={() => play("click")}
                   className="inline-flex items-center gap-1 hover:text-accent-text transition-colors"
                 >
                   {title}

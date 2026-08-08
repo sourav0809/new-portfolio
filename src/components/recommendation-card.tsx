@@ -1,6 +1,7 @@
 "use client";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useSoundEffects } from "@/hooks/use-sound-effects";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, ChevronUp, Linkedin } from "lucide-react";
 import { useState } from "react";
@@ -23,6 +24,7 @@ export function RecommendationCard({
   linkedinUrl,
 }: RecommendationCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const { play } = useSoundEffects();
 
   // Split recommendation into paragraphs for proper spacing
   const paragraphs = recommendation
@@ -33,10 +35,16 @@ export function RecommendationCard({
   const remainingParagraphs = paragraphs.slice(1);
   const hasMore = remainingParagraphs.length > 0;
 
+  const toggleExpanded = () => {
+    play(isExpanded ? "collapse" : "expand");
+    setIsExpanded((prev) => !prev);
+  };
+
   return (
     <div
       className="group relative cursor-pointer overflow-hidden rounded-lg border border-border bg-card transition-all duration-300 hover:border-accent/50"
-      onClick={() => hasMore && setIsExpanded(!isExpanded)}
+      onClick={() => hasMore && toggleExpanded()}
+      onMouseEnter={() => play("hover")}
     >
       {/* Quote mark accent */}
       <span
@@ -135,7 +143,10 @@ export function RecommendationCard({
         {/* Read More / Read Less Button */}
         {hasMore && (
           <button
-            onClick={() => setIsExpanded(!isExpanded)}
+            onClick={(e) => {
+              e.stopPropagation();
+              toggleExpanded();
+            }}
             className="mt-3 flex items-center gap-1 font-mono-label text-xs font-medium text-muted-foreground hover:text-accent-text transition-colors duration-200 group"
           >
             <span className="underline underline-offset-2 decoration-muted-foreground/30 group-hover:decoration-accent/60 transition-colors">
