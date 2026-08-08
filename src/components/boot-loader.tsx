@@ -24,7 +24,7 @@ export function BootLoader({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (hasRun.current) return;
-    if (isDesktopMotion === null) return; // viewport not measured yet
+    if (isDesktopMotion === null) return; // motion preference not read yet
     hasRun.current = true;
 
     if (!isDesktopMotion) {
@@ -101,7 +101,7 @@ export function BootLoader({ children }: { children: React.ReactNode }) {
           </div>
         </div>
       )}
-      {phase !== "idle" && children}
+      {children}
     </>
   );
 }

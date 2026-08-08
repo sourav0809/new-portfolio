@@ -17,10 +17,10 @@ interface ScrollRevealProps {
 }
 
 /**
- * Desktop: fades/slides children in as they enter the viewport via GSAP
- * ScrollTrigger (full choreography). Mobile: a plain CSS opacity/translate
- * fade-in on mount via IntersectionObserver — no GSAP, no ScrollTrigger,
- * just a lightweight one-shot transition per the "simple, no beats" brief.
+ * Fades/slides children in as they enter the viewport via GSAP
+ * ScrollTrigger — runs on both desktop and mobile. When the OS-level
+ * prefers-reduced-motion setting is on, falls back to a plain CSS
+ * opacity/translate fade via IntersectionObserver instead (no GSAP).
  */
 export function ScrollReveal({
   children,
