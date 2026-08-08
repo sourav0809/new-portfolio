@@ -19,39 +19,52 @@ export const DATA = {
     </p>
   ),
   avatarUrl: "/me.jpeg",
-  skills: [
-    "HTML",
-    "CSS",
-    "JavaScript",
-    "TypeScript",
-    "React",
-    "Next.js",
-    "Node.js",
-    "PostgreSQL",
-    "SQL",
-    "SCSS",
-    "Tailwind CSS",
-    "Material UI",
-    "Shadcn UI",
-    "Redux",
-    "Redux Toolkit",
-    "React Router",
-    "React Native",
-    "Express",
-    "MySQL",
-    "NestJS",
-    "Firebase",
-    "MongoDB",
-    "AWS ( EC2, RDS, Lambda, SQS, S3, API Gateway )",
-    "CI/CD (GitHub Actions)",
-    "Git",
-    "GitHub",
-    "Googling",
-    "Prompt Engineering",
+  skillCategories: [
+    {
+      category: "Languages",
+      skills: ["HTML", "CSS", "SCSS", "JavaScript", "TypeScript", "SQL"],
+    },
+    {
+      category: "Frontend",
+      skills: [
+        "React",
+        "Next.js",
+        "React Native",
+        "Redux",
+        "Redux Toolkit",
+        "React Router",
+        "Tailwind CSS",
+        "Material UI",
+        "Shadcn UI",
+      ],
+    },
+    {
+      category: "Backend & Databases",
+      skills: [
+        "Node.js",
+        "Express",
+        "NestJS",
+        "PostgreSQL",
+        "MySQL",
+        "MongoDB",
+        "Firebase",
+      ],
+    },
+    {
+      category: "Cloud & DevOps",
+      skills: [
+        "AWS ( EC2, RDS, Lambda, SQS, S3, API Gateway )",
+        "CI/CD (GitHub Actions)",
+      ],
+    },
+    {
+      category: "Tools & Other",
+      skills: ["Git", "GitHub", "Prompt Engineering", "Googling"],
+    },
   ],
   navbar: [{ href: "/", icon: HomeIcon, label: "Home" }],
   contact: {
-    email: "devsourav0809@gmail.com",
+    email: "souravpathakatwork@gmail.com",
     tel: "+91 6294543902",
     social: {
       Resume: {
@@ -78,7 +91,7 @@ export const DATA = {
 
       Email: {
         name: "Send Email",
-        url: "mailto:devsourav0809@gmail.com",
+        url: "mailto:souravpathakatwork@gmail.com",
         icon: Icons.email,
         navbar: true,
       },

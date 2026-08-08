@@ -85,7 +85,7 @@ export function RecommendationCard({
         <div className="space-y-3">
           {/* Preview — first paragraph, always visible */}
           {previewParagraphs.map((para, i) => (
-            <p key={i} className="text-sm leading-relaxed text-foreground/70">
+            <p key={i} className="text-sm leading-relaxed text-foreground">
               {para}
             </p>
           ))}
@@ -111,7 +111,7 @@ export function RecommendationCard({
                         delay: i * 0.06,
                         ease: "easeOut",
                       }}
-                      className="text-sm leading-relaxed text-foreground/70"
+                      className="text-sm leading-relaxed text-foreground"
                     >
                       {para}
                     </motion.p>

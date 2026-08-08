@@ -7,7 +7,14 @@ import { ResumeCard } from "@/components/resume-card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { DATA } from "@/data/resume";
-import { Download } from "lucide-react";
+import {
+  BriefcaseIcon,
+  Download,
+  GraduationCapIcon,
+  MessageSquareQuoteIcon,
+  UserIcon,
+  WrenchIcon,
+} from "lucide-react";
 
 const BLUR_FADE_DELAY = 0.03;
 
@@ -52,63 +59,19 @@ export default function Page() {
         </section>
         <section id="about">
           <BlurFade delay={BLUR_FADE_DELAY * 3}>
-            <h2 className="text-xl font-bold">🙋‍♂️ About Me</h2>
+            <h2 className="text-xl font-bold flex items-center gap-2">
+              <UserIcon className="size-5" /> About Me
+            </h2>
           </BlurFade>
           <BlurFade delay={BLUR_FADE_DELAY * 4}>{DATA.summary}</BlurFade>
         </section>
 
-        <section id="recommendations">
-          <div className="flex min-h-0 flex-col gap-y-4">
-            <BlurFade delay={BLUR_FADE_DELAY * 4.5}>
-              <div className="space-y-2">
-                <h2 className="text-xl font-bold">
-                  💬 LinkedIn Recommendations
-                </h2>
-                <p className="text-sm text-muted-foreground max-w-[600px]">
-                  Kind words from the people and teams I&apos;ve had the
-                  privilege to collaborate with.
-                </p>
-              </div>
-            </BlurFade>
-            <div className="flex flex-col gap-4">
-              {DATA.recommendations.map((rec, id) => (
-                <BlurFade
-                  key={rec.name}
-                  delay={BLUR_FADE_DELAY * 5 + id * 0.1}
-                >
-                  <RecommendationCard
-                    name={rec.name}
-                    role={rec.role}
-                    relationship={rec.relationship}
-                    avatarUrl={rec.avatarUrl}
-                    recommendation={rec.recommendation}
-                    linkedinUrl={rec.linkedinUrl}
-                  />
-                </BlurFade>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="skills">
-          <div className="flex min-h-0 flex-col gap-y-3">
-            <BlurFade delay={BLUR_FADE_DELAY * 9}>
-              <h2 className="text-xl font-bold">🛠️ My Skills</h2>
-            </BlurFade>
-            <div className="flex flex-wrap gap-1">
-              {DATA.skills.map((skill, id) => (
-                <BlurFade key={skill} delay={BLUR_FADE_DELAY * 10 + id * 0.05}>
-                  <Badge key={skill}>{skill}</Badge>
-                </BlurFade>
-              ))}
-            </div>
-          </div>
-        </section>
         <section id="work">
           <div className="flex min-h-0 flex-col gap-y-3">
             <BlurFade delay={BLUR_FADE_DELAY * 5}>
-              <h2 className="text-xl font-bold">
-                💼 Work Experience & Training
+              <h2 className="text-xl font-bold flex items-center gap-2">
+                <BriefcaseIcon className="size-5" /> Work Experience &
+                Training
               </h2>
             </BlurFade>
             {DATA.work.map((work, id) => (
@@ -127,6 +90,33 @@ export default function Page() {
                   period={`${work.start} - ${work.end ?? "Present"}`}
                   description={work.description}
                 />
+              </BlurFade>
+            ))}
+          </div>
+        </section>
+
+        <section id="skills">
+          <div className="flex min-h-0 flex-col gap-y-4">
+            <BlurFade delay={BLUR_FADE_DELAY * 9}>
+              <h2 className="text-xl font-bold flex items-center gap-2">
+                <WrenchIcon className="size-5" /> My Skills
+              </h2>
+            </BlurFade>
+            {DATA.skillCategories.map((group, groupId) => (
+              <BlurFade
+                key={group.category}
+                delay={BLUR_FADE_DELAY * 10 + groupId * 0.1}
+              >
+                <div className="space-y-1.5">
+                  <h3 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                    {group.category}
+                  </h3>
+                  <div className="flex flex-wrap gap-1">
+                    {group.skills.map((skill) => (
+                      <Badge key={skill}>{skill}</Badge>
+                    ))}
+                  </div>
+                </div>
               </BlurFade>
             ))}
           </div>
@@ -174,10 +164,46 @@ export default function Page() {
           </div>
         </section>
 
+        <section id="recommendations">
+          <div className="flex min-h-0 flex-col gap-y-4">
+            <BlurFade delay={BLUR_FADE_DELAY * 13}>
+              <div className="space-y-2">
+                <h2 className="text-xl font-bold flex items-center gap-2">
+                  <MessageSquareQuoteIcon className="size-5" /> LinkedIn
+                  Recommendations
+                </h2>
+                <p className="text-sm text-muted-foreground max-w-[600px]">
+                  Kind words from the people and teams I&apos;ve had the
+                  privilege to collaborate with.
+                </p>
+              </div>
+            </BlurFade>
+            <div className="flex flex-col gap-4">
+              {DATA.recommendations.map((rec, id) => (
+                <BlurFade
+                  key={rec.name}
+                  delay={BLUR_FADE_DELAY * 14 + id * 0.1}
+                >
+                  <RecommendationCard
+                    name={rec.name}
+                    role={rec.role}
+                    relationship={rec.relationship}
+                    avatarUrl={rec.avatarUrl}
+                    recommendation={rec.recommendation}
+                    linkedinUrl={rec.linkedinUrl}
+                  />
+                </BlurFade>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section id="education">
           <div className="flex min-h-0 flex-col gap-y-3">
             <BlurFade delay={BLUR_FADE_DELAY * 7}>
-              <h2 className="text-xl font-bold">📚 Education</h2>
+              <h2 className="text-xl font-bold flex items-center gap-2">
+                <GraduationCapIcon className="size-5" /> Education
+              </h2>
             </BlurFade>
             {DATA.education.map((education, id) => (
               <BlurFade
@@ -221,10 +247,10 @@ export default function Page() {
                   <br />
                   You can also email me at{" "}
                   <a
-                    href="mailto:devsourav0809@gmail.com"
+                    href="mailto:souravpathakatwork@gmail.com"
                     className="font-semibold underline"
                   >
-                    devsourav0809@gmail.com
+                    souravpathakatwork@gmail.com
                   </a>
                   <br />
                   Looking forward to hearing from you! 😊
