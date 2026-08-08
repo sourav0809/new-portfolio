@@ -1,3 +1,5 @@
+"use client";
+
 import { Dock, DockIcon } from "@/components/magicui/dock";
 import { ModeToggle } from "@/components/mode-toggle";
 import { buttonVariants } from "@/components/ui/button";
@@ -9,9 +11,49 @@ import {
 } from "@/components/ui/tooltip";
 import { DATA } from "@/data/resume";
 import { cn } from "@/lib/utils";
+import { useDesktopMotion } from "@/hooks/use-desktop-motion";
+import { useSoundEffects } from "@/hooks/use-sound-effects";
+import { Volume2, VolumeX } from "lucide-react";
 import Link from "next/link";
 
+function SoundToggle() {
+  const isDesktopMotion = useDesktopMotion();
+  const { enabled, supported, toggle, play } = useSoundEffects();
+
+  if (!isDesktopMotion || !supported) return null;
+
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <button
+          type="button"
+          onClick={() => {
+            toggle();
+            setTimeout(() => play("toggle"), 30);
+          }}
+          className={cn(
+            buttonVariants({ variant: "ghost", size: "icon" }),
+            "size-12"
+          )}
+          aria-label={enabled ? "Mute sound effects" : "Enable sound effects"}
+        >
+          {enabled ? (
+            <Volume2 className="size-4" />
+          ) : (
+            <VolumeX className="size-4" />
+          )}
+        </button>
+      </TooltipTrigger>
+      <TooltipContent>
+        <p>{enabled ? "Sound on" : "Sound off"}</p>
+      </TooltipContent>
+    </Tooltip>
+  );
+}
+
 export default function Navbar() {
+  const { play } = useSoundEffects();
+
   return (
     <div className="pointer-events-none fixed inset-x-0 bottom-0 z-30 mx-auto mb-4 flex origin-bottom h-full max-h-14">
       <div className="fixed bottom-0 inset-x-0 h-16 w-full bg-background to-transparent backdrop-blur-lg [-webkit-mask-image:linear-gradient(to_top,black,transparent)] dark:bg-background"></div>
@@ -22,6 +64,8 @@ export default function Navbar() {
               <TooltipTrigger asChild>
                 <Link
                   href={item.href}
+                  onMouseEnter={() => play("hover")}
+                  onClick={() => play("click")}
                   className={cn(
                     buttonVariants({ variant: "ghost", size: "icon" }),
                     "size-12"
@@ -45,6 +89,8 @@ export default function Navbar() {
                 <TooltipTrigger asChild>
                   <Link
                     href={social.url}
+                    onMouseEnter={() => play("hover")}
+                    onClick={() => play("click")}
                     className={cn(
                       buttonVariants({ variant: "ghost", size: "icon" }),
                       "size-12"
@@ -60,6 +106,9 @@ export default function Navbar() {
             </DockIcon>
           ))}
         <Separator orientation="vertical" className="h-full py-2" />
+        <DockIcon>
+          <SoundToggle />
+        </DockIcon>
         <DockIcon>
           <Tooltip>
             <TooltipTrigger asChild>
