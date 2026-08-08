@@ -2,10 +2,9 @@
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardHeader } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-import { ChevronRightIcon } from "lucide-react";
+import { ArrowUpRightIcon, PlusIcon } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
@@ -78,6 +77,8 @@ interface ResumeCardProps {
   badges?: readonly string[];
   period: string;
   description?: string;
+  isCurrent?: boolean;
+  isLast?: boolean;
 }
 export const ResumeCard = ({
   logoUrl,
@@ -88,101 +89,121 @@ export const ResumeCard = ({
   badges,
   period,
   description,
+  isCurrent,
+  isLast,
 }: ResumeCardProps) => {
-  const [isExpanded, setIsExpanded] = React.useState(true);
+  const [isExpanded, setIsExpanded] = React.useState(Boolean(isCurrent));
 
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-    if (description) {
-      e.preventDefault();
-      setIsExpanded(!isExpanded);
-    }
-  };
+  const toggleExpanded = () => setIsExpanded((prev) => !prev);
 
   return (
-    <Link
-      href={href || "#"}
-      className="block cursor-pointer"
-      onClick={handleClick}
-    >
-      <Card className="flex">
-        <div className="flex-none">
-          <Avatar
-            className="border size-12 m-auto bg-muted-background dark:bg-foreground"
-            onClick={() => {
-              window?.open(href, "_blank");
-            }}
-          >
-            <AvatarImage
-              src={logoUrl}
-              alt={altText}
-              className="object-contain"
-            />
-            <AvatarFallback>{altText[0]}</AvatarFallback>
-          </Avatar>
-        </div>
-        <div className="flex-grow ml-4 items-center flex-col group">
-          <CardHeader>
-            <div className="flex items-center justify-between gap-x-2 text-base">
-              <h3 className="inline-flex items-center justify-center font-semibold leading-none text-xs sm:text-sm">
-                {title}
-                {badges && (
-                  <span className="inline-flex gap-x-1">
-                    {badges.map((badge, index) => (
-                      <Badge
-                        variant="secondary"
-                        className="align-middle text-xs"
-                        key={index}
-                      >
-                        {badge}
-                      </Badge>
-                    ))}
-                  </span>
-                )}
-                <ChevronRightIcon
+    <div className="relative flex gap-4 sm:gap-5">
+      <div className="flex flex-col items-center">
+        <Avatar
+          className={cn(
+            "size-10 border bg-card sm:size-11",
+            isCurrent && "border-accent ring-2 ring-accent/20"
+          )}
+        >
+          <AvatarImage src={logoUrl} alt={altText} className="object-contain" />
+          <AvatarFallback>{altText[0]}</AvatarFallback>
+        </Avatar>
+        {!isLast && <div className="mt-2 w-px flex-1 bg-border" />}
+      </div>
+
+      <div className="flex-1 pb-8">
+        <div className="group">
+          <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+            <h3 className="inline-flex flex-wrap items-center gap-2 text-base font-semibold sm:text-lg">
+              {href ? (
+                <Link
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 hover:text-accent-text transition-colors"
+                >
+                  {title}
+                  <ArrowUpRightIcon className="size-3.5 text-muted-foreground transition-colors group-hover:text-accent-text" />
+                </Link>
+              ) : (
+                title
+              )}
+              {isCurrent && (
+                <span className="inline-flex items-center gap-1 rounded-full border border-accent/30 bg-accent/10 px-1.5 py-px font-mono-label text-[10px] font-medium uppercase tracking-wide text-accent-text align-middle">
+                  <span className="size-1 rounded-full bg-accent-text" />
+                  Current
+                </span>
+              )}
+              {badges && (
+                <span className="inline-flex gap-x-1">
+                  {badges.map((badge, index) => (
+                    <Badge
+                      variant="secondary"
+                      className="align-middle text-xs"
+                      key={index}
+                    >
+                      {badge}
+                    </Badge>
+                  ))}
+                </span>
+              )}
+            </h3>
+            <div className="font-mono-label text-sm tabular-nums text-muted-foreground">
+              {period}
+            </div>
+          </div>
+          {subtitle && (
+            <div className="mt-0.5 text-sm text-muted-foreground sm:text-base">
+              {subtitle}
+            </div>
+          )}
+
+          {description && (
+            <>
+              <motion.div
+                initial={false}
+                animate={{
+                  opacity: isExpanded ? 1 : 0,
+                  height: isExpanded ? "auto" : 0,
+                }}
+                transition={{
+                  duration: 0.5,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                className="mt-3 flex w-full flex-col gap-y-2.5 overflow-hidden text-sm sm:text-base"
+              >
+                {description.split("•").map((item, index) => {
+                  const trimmed = item.trim();
+                  if (!trimmed) return null;
+
+                  return (
+                    <li
+                      key={index}
+                      className="ml-4 list-disc leading-relaxed marker:text-accent"
+                      dangerouslySetInnerHTML={{
+                        __html: boldify(trimmed),
+                      }}
+                    />
+                  );
+                })}
+              </motion.div>
+              <button
+                type="button"
+                onClick={toggleExpanded}
+                className="mt-2 inline-flex items-center gap-1 font-mono-label text-xs text-muted-foreground transition-colors hover:text-accent-text"
+              >
+                <PlusIcon
                   className={cn(
-                    "size-4 translate-x-0 transform opacity-0 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:opacity-100",
-                    isExpanded ? "rotate-90" : "rotate-0"
+                    "size-3 transition-transform duration-300",
+                    isExpanded && "rotate-45"
                   )}
                 />
-              </h3>
-              <div className="text-xs sm:text-sm tabular-nums text-muted-foreground text-right">
-                {period}
-              </div>
-            </div>
-            {subtitle && <div className="font-sans text-xs">{subtitle}</div>}
-          </CardHeader>
-          {description && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{
-                opacity: isExpanded ? 1 : 0,
-
-                height: isExpanded ? "auto" : 0,
-              }}
-              transition={{
-                duration: 0.7,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              className="mt-2 text-xs sm:text-sm whitespace-normal w-full flex flex-col gap-x-1 gap-y-2"
-            >
-              {description.split("•").map((item, index) => {
-                const trimmed = item.trim();
-                if (!trimmed) return null;
-
-                return (
-                  <li
-                    key={index}
-                    className="leading-snug"
-                    dangerouslySetInnerHTML={{
-                      __html: boldify(trimmed),
-                    }}
-                  />
-                );
-              })}
-            </motion.div>
+                {isExpanded ? "collapse" : "expand"}
+              </button>
+            </>
           )}
         </div>
-      </Card>
-    </Link>
+      </div>
+    </div>
   );
 };

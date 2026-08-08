@@ -10,7 +10,7 @@ export const DATA = {
   description:
     "Software Engineer & Mentor | Passionate about building, fixing, and debugging. Always up for tech talk and very active on LinkedIn. ",
   summary: (
-    <p className="text-base prose max-w-full text-pretty font-sans text-muted-foreground dark:prose-invert mt-2">
+    <p className="text-base sm:text-lg prose prose-lg max-w-full text-pretty font-sans text-muted-foreground dark:prose-invert mt-2">
       Since 10th grade, I&lsquo;ve been passionate about web development and
       coding. What started as an interest gradually turned into a career, and
       over the years I&lsquo;ve grown as a Software Engineer while working on

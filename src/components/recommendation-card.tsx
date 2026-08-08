@@ -35,13 +35,21 @@ export function RecommendationCard({
 
   return (
     <div
-      className="relative rounded-xl border border-border/50 bg-card transition-all duration-300 hover:border-border hover:shadow-md dark:hover:shadow-muted/5 overflow-hidden cursor-pointer"
+      className="group relative cursor-pointer overflow-hidden rounded-lg border border-border bg-card transition-all duration-300 hover:border-accent/50"
       onClick={() => hasMore && setIsExpanded(!isExpanded)}
     >
+      {/* Quote mark accent */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute right-4 top-3 font-mono-label text-4xl leading-none text-accent/10 transition-colors duration-300 group-hover:text-accent/20"
+      >
+        &rdquo;
+      </span>
+
       {/* Header: Avatar + Name + Role */}
       <div className="px-5 pt-5 pb-3">
         <div className="flex items-start gap-3.5">
-          <Avatar className="size-12 border border-border/60 shadow-sm flex-shrink-0">
+          <Avatar className="size-12 border border-border shadow-sm flex-shrink-0">
             <AvatarImage alt={name} src={avatarUrl} className="object-cover" />
             <AvatarFallback className="text-xs font-semibold bg-muted">
               {name
@@ -53,7 +61,7 @@ export function RecommendationCard({
 
           <div className="min-w-0 flex-1">
             <div className="flex items-center gap-2">
-              <h4 className="text-sm font-semibold text-foreground leading-tight">
+              <h4 className="text-base font-semibold text-foreground leading-tight">
                 {name}
               </h4>
               {linkedinUrl && (
@@ -61,7 +69,7 @@ export function RecommendationCard({
                   href={linkedinUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#0A66C2] hover:text-[#004182] transition-colors flex-shrink-0"
+                  className="text-muted-foreground hover:text-accent-text transition-colors flex-shrink-0"
                   aria-label={`${name}'s LinkedIn profile`}
                   onClick={(e) => e.stopPropagation()}
                 >
@@ -69,23 +77,25 @@ export function RecommendationCard({
                 </a>
               )}
             </div>
-            <p className="text-xs text-muted-foreground mt-0.5 leading-snug">
+            <p className="text-sm text-muted-foreground mt-0.5 leading-snug">
               {role}
             </p>
-            <p className="text-xs text-muted-foreground mt-1">{relationship}</p>
+            <p className="mt-1 font-mono-label text-xs text-accent-text">
+              {relationship}
+            </p>
           </div>
         </div>
       </div>
 
       {/* Divider */}
-      <div className="mx-5 h-px bg-border/40" />
+      <div className="mx-5 h-px bg-border" />
 
       {/* Recommendation Text */}
       <div className="px-5 pt-3 pb-4">
         <div className="space-y-3">
           {/* Preview — first paragraph, always visible */}
           {previewParagraphs.map((para, i) => (
-            <p key={i} className="text-sm leading-relaxed text-foreground">
+            <p key={i} className="text-base leading-relaxed text-foreground">
               {para}
             </p>
           ))}
@@ -111,7 +121,7 @@ export function RecommendationCard({
                         delay: i * 0.06,
                         ease: "easeOut",
                       }}
-                      className="text-sm leading-relaxed text-foreground"
+                      className="text-base leading-relaxed text-foreground"
                     >
                       {para}
                     </motion.p>
@@ -126,10 +136,10 @@ export function RecommendationCard({
         {hasMore && (
           <button
             onClick={() => setIsExpanded(!isExpanded)}
-            className="mt-3 flex items-center gap-1 text-xs font-medium text-foreground/70 hover:text-foreground transition-colors duration-200 group"
+            className="mt-3 flex items-center gap-1 font-mono-label text-xs font-medium text-muted-foreground hover:text-accent-text transition-colors duration-200 group"
           >
-            <span className="underline underline-offset-2 decoration-foreground/30 group-hover:decoration-foreground/60 transition-colors">
-              {isExpanded ? "Show less" : "Read full feedback"}
+            <span className="underline underline-offset-2 decoration-muted-foreground/30 group-hover:decoration-accent/60 transition-colors">
+              {isExpanded ? "show_less()" : "read_more()"}
             </span>
             {isExpanded ? (
               <ChevronUp className="size-3.5 transition-transform" />

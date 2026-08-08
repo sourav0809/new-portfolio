@@ -1,73 +1,75 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-* {
-  font-family: "Poppins", sans-serif;
-}
-
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 210 11.1% 3.53%;
+    /* cool paper white ground, ink foreground with slight blue bias */
+    --background: 210 20% 98%;
+    --foreground: 215 30% 7%;
 
     --card: 0 0% 100%;
-    --card-foreground: 210 11.1% 3.53%;
+    --card-foreground: 215 30% 7%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 210 11.1% 3.53%;
+    --popover-foreground: 215 30% 7%;
 
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
+    --primary: 215 30% 7%;
+    --primary-foreground: 210 20% 98%;
 
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
+    --secondary: 210 16% 93%;
+    --secondary-foreground: 215 30% 7%;
 
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
+    --muted: 210 16% 93%;
+    --muted-foreground: 217 12% 42%;
 
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
+    /* signal indigo accent */
+    --accent: 235 85% 55%;
+    --accent-foreground: 0 0% 100%;
+    /* same indigo already clears AA (7:1) as text on light backgrounds */
+    --accent-text: 235 85% 55%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 6 78% 57%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
+    --border: 214 15% 88%;
+    --input: 214 15% 88%;
+    --ring: 235 85% 55%;
 
-    --radius: 0.5rem;
+    --radius: 0.375rem;
   }
 
   .dark {
-    --background: 210 11.1% 3.53%;
-    --foreground: 0 0% 98%;
+    /* near-black ink ground, slight blue bias */
+    --background: 220 26% 6%;
+    --foreground: 210 20% 96%;
 
-    --card: 210 11.1% 3.53%;
-    --card-foreground: 0 0% 98%;
+    --card: 220 24% 8.5%;
+    --card-foreground: 210 20% 96%;
 
-    --popover: 210 11.1% 3.53%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 220 24% 8.5%;
+    --popover-foreground: 210 20% 96%;
 
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
+    --primary: 210 20% 96%;
+    --primary-foreground: 220 26% 6%;
 
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 220 18% 14%;
+    --secondary-foreground: 210 20% 96%;
 
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
+    --muted: 220 18% 14%;
+    --muted-foreground: 216 12% 63%;
 
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
+    --accent: 235 90% 70%;
+    --accent-foreground: 220 26% 6%;
+    /* same lighter indigo carries 5:1+ contrast as text on dark backgrounds */
+    --accent-text: 235 90% 70%;
 
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 6 70% 55%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
+    --border: 220 16% 18%;
+    --input: 220 16% 18%;
+    --ring: 235 90% 70%;
   }
 }
 
@@ -77,6 +79,32 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+.font-mono-label {
+  font-family: var(--font-mono), ui-monospace, monospace;
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(to right, hsl(var(--border) / 0.5) 1px, transparent 1px),
+    linear-gradient(to bottom, hsl(var(--border) / 0.5) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.text-accent-text {
+  color: hsl(var(--accent-text));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
 }
 

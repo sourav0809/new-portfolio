@@ -1,265 +1,176 @@
-import { HackathonCard } from "@/components/hackathon-card";
-import BlurFade from "@/components/magicui/blur-fade";
-import BlurFadeText from "@/components/magicui/blur-fade-text";
+import { HeroSection } from "@/components/hero-section";
 import { ProjectCard } from "@/components/project-card";
 import { RecommendationCard } from "@/components/recommendation-card";
 import { ResumeCard } from "@/components/resume-card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { ScrollReveal } from "@/components/scroll-reveal";
+import { SectionHeading } from "@/components/section-heading";
 import { Badge } from "@/components/ui/badge";
 import { DATA } from "@/data/resume";
 import {
   BriefcaseIcon,
-  Download,
   GraduationCapIcon,
+  MailIcon,
   MessageSquareQuoteIcon,
   UserIcon,
   WrenchIcon,
 } from "lucide-react";
 
-const BLUR_FADE_DELAY = 0.03;
-
 export default function Page() {
   return (
-    <>
-      <main className="flex flex-col min-h-[100dvh] space-y-10">
-        <section id="hero">
-          <div className="mx-auto w-full max-w-3xl space-y-8">
-            <div className="gap-2 flex justify-between">
-              <div className="flex-col flex flex-1 space-y-1.5">
-                <BlurFadeText
-                  delay={BLUR_FADE_DELAY}
-                  className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none"
-                  yOffset={8}
-                  text={`Hi, I'm ${DATA.name.split(" ")[0]} 👋`}
-                />
-                <BlurFadeText
-                  className="max-w-[600px] md:text-xl"
-                  delay={BLUR_FADE_DELAY}
-                  text={DATA.description}
-                />
-                <BlurFade delay={BLUR_FADE_DELAY}>
-                  <a
-                    className="flex items-center gap-2 mt-2 w-fit text-sm bg-black text-white px-4 py-1.5 dark:bg-white dark:text-black dark:hover:bg-gray-200 rounded-md  transition-all duration-300 ease-in-out"
-                    href={DATA.contact.social.Resume.url}
-                    target="_blank"
-                  >
-                    <span>Resume</span>
-                    <Download size={16} />
-                  </a>
-                </BlurFade>
-              </div>
-              <BlurFade delay={BLUR_FADE_DELAY}>
-                <Avatar className="size-28 border">
-                  <AvatarImage alt={DATA.name} src={DATA.avatarUrl} />
-                  <AvatarFallback>{DATA.initials}</AvatarFallback>
-                </Avatar>
-              </BlurFade>
-            </div>
-          </div>
-        </section>
-        <section id="about">
-          <BlurFade delay={BLUR_FADE_DELAY * 3}>
-            <h2 className="text-xl font-bold flex items-center gap-2">
-              <UserIcon className="size-5" /> About Me
-            </h2>
-          </BlurFade>
-          <BlurFade delay={BLUR_FADE_DELAY * 4}>{DATA.summary}</BlurFade>
-        </section>
+    <main className="mx-auto flex min-h-[100dvh] max-w-3xl flex-col gap-20 px-6 py-16 sm:py-24">
+      <section id="hero">
+        <HeroSection />
+      </section>
 
-        <section id="work">
-          <div className="flex min-h-0 flex-col gap-y-3">
-            <BlurFade delay={BLUR_FADE_DELAY * 5}>
-              <h2 className="text-xl font-bold flex items-center gap-2">
-                <BriefcaseIcon className="size-5" /> Work Experience &
-                Training
-              </h2>
-            </BlurFade>
-            {DATA.work.map((work, id) => (
-              <BlurFade
-                key={work.company}
-                delay={BLUR_FADE_DELAY * 6 + id * 0.05}
-              >
-                <ResumeCard
-                  key={work.company}
-                  logoUrl={work.logoUrl}
-                  altText={work.company}
-                  title={work.company}
-                  subtitle={work.title}
-                  href={work.href}
-                  badges={work.badges}
-                  period={`${work.start} - ${work.end ?? "Present"}`}
-                  description={work.description}
-                />
-              </BlurFade>
-            ))}
-          </div>
-        </section>
+      <section id="about" className="flex flex-col gap-6">
+        <SectionHeading index="01" title="About" icon={UserIcon} />
+        <ScrollReveal>{DATA.summary}</ScrollReveal>
+      </section>
 
-        <section id="skills">
-          <div className="flex min-h-0 flex-col gap-y-4">
-            <BlurFade delay={BLUR_FADE_DELAY * 9}>
-              <h2 className="text-xl font-bold flex items-center gap-2">
-                <WrenchIcon className="size-5" /> My Skills
-              </h2>
-            </BlurFade>
-            {DATA.skillCategories.map((group, groupId) => (
-              <BlurFade
-                key={group.category}
-                delay={BLUR_FADE_DELAY * 10 + groupId * 0.1}
-              >
-                <div className="space-y-1.5">
-                  <h3 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                    {group.category}
-                  </h3>
-                  <div className="flex flex-wrap gap-1">
-                    {group.skills.map((skill) => (
-                      <Badge key={skill}>{skill}</Badge>
-                    ))}
-                  </div>
-                </div>
-              </BlurFade>
-            ))}
-          </div>
-        </section>
+      <section id="work" className="flex flex-col gap-8">
+        <SectionHeading
+          index="02"
+          title="Work Experience & Training"
+          icon={BriefcaseIcon}
+        />
+        <div className="flex flex-col">
+          {DATA.work.map((work, id) => (
+            <ScrollReveal key={work.company + work.title} delay={id * 0.05}>
+              <ResumeCard
+                logoUrl={work.logoUrl}
+                altText={work.company}
+                title={work.company}
+                subtitle={work.title}
+                href={work.href}
+                badges={work.badges}
+                period={`${work.start} - ${work.end ?? "Present"}`}
+                description={work.description}
+                isCurrent={work.end === "Present"}
+                isLast={id === DATA.work.length - 1}
+              />
+            </ScrollReveal>
+          ))}
+        </div>
+      </section>
 
-        <section id="projects">
-          <div className="space-y-12 w-full py-12">
-            <BlurFade delay={BLUR_FADE_DELAY * 11}>
-              <div className="flex flex-col items-center justify-center space-y-4 text-center">
-                <div className="space-y-2">
-                  <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
-                    My Projects
-                  </div>
-                  <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                    Check out my latest work
-                  </h2>
-                  <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                    I&apos;ve worked on a variety of projects, from simple
-                    websites to complex web applications. Here are a few of my
-                    favorites.
-                  </p>
+      <section id="skills" className="flex flex-col gap-6">
+        <SectionHeading index="03" title="Skills" icon={WrenchIcon} />
+        <div className="flex flex-col gap-5">
+          {DATA.skillCategories.map((group, groupId) => (
+            <ScrollReveal key={group.category} delay={groupId * 0.06}>
+              <div className="flex flex-col gap-2 sm:flex-row sm:gap-4">
+                <h3 className="w-full shrink-0 font-mono-label text-xs uppercase tracking-wider text-accent-text sm:w-40">
+                  {group.category}
+                </h3>
+                <div className="flex flex-wrap gap-1.5">
+                  {group.skills.map((skill) => (
+                    <Badge key={skill} variant="secondary" className="text-sm px-2.5 py-1">
+                      {skill}
+                    </Badge>
+                  ))}
                 </div>
               </div>
-            </BlurFade>
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 max-w-[800px] mx-auto">
-              {DATA.projects.map((project, id) => (
-                <BlurFade
-                  key={project.title}
-                  delay={BLUR_FADE_DELAY * 12 + id * 0.05}
-                >
-                  <ProjectCard
-                    href={project.href}
-                    key={project.title}
-                    title={project.title}
-                    description={project.description}
-                    dates={project.dates}
-                    tags={project.technologies}
-                    image={project.image}
-                    video={project.video}
-                    links={project.links}
-                  />
-                </BlurFade>
-              ))}
-            </div>
-          </div>
-        </section>
+            </ScrollReveal>
+          ))}
+        </div>
+      </section>
 
-        <section id="recommendations">
-          <div className="flex min-h-0 flex-col gap-y-4">
-            <BlurFade delay={BLUR_FADE_DELAY * 13}>
-              <div className="space-y-2">
-                <h2 className="text-xl font-bold flex items-center gap-2">
-                  <MessageSquareQuoteIcon className="size-5" /> LinkedIn
-                  Recommendations
-                </h2>
-                <p className="text-sm text-muted-foreground max-w-[600px]">
-                  Kind words from the people and teams I&apos;ve had the
-                  privilege to collaborate with.
-                </p>
-              </div>
-            </BlurFade>
-            <div className="flex flex-col gap-4">
-              {DATA.recommendations.map((rec, id) => (
-                <BlurFade
-                  key={rec.name}
-                  delay={BLUR_FADE_DELAY * 14 + id * 0.1}
-                >
-                  <RecommendationCard
-                    name={rec.name}
-                    role={rec.role}
-                    relationship={rec.relationship}
-                    avatarUrl={rec.avatarUrl}
-                    recommendation={rec.recommendation}
-                    linkedinUrl={rec.linkedinUrl}
-                  />
-                </BlurFade>
-              ))}
-            </div>
-          </div>
-        </section>
+      <section id="projects" className="flex flex-col gap-6">
+        <SectionHeading
+          index="04"
+          title="Projects"
+          icon={BriefcaseIcon}
+          description="A few things I've built, from full-stack apps to internal tools."
+        />
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          {DATA.projects.map((project, id) => (
+            <ScrollReveal key={project.title} delay={id * 0.05}>
+              <ProjectCard
+                href={project.href}
+                title={project.title}
+                description={project.description}
+                dates={project.dates}
+                tags={project.technologies}
+                image={project.image}
+                video={project.video}
+                links={project.links}
+                className="h-full"
+              />
+            </ScrollReveal>
+          ))}
+        </div>
+      </section>
 
-        <section id="education">
-          <div className="flex min-h-0 flex-col gap-y-3">
-            <BlurFade delay={BLUR_FADE_DELAY * 7}>
-              <h2 className="text-xl font-bold flex items-center gap-2">
-                <GraduationCapIcon className="size-5" /> Education
-              </h2>
-            </BlurFade>
-            {DATA.education.map((education, id) => (
-              <BlurFade
-                key={education.school}
-                delay={BLUR_FADE_DELAY * 8 + id * 0.05}
+      <section id="recommendations" className="flex flex-col gap-6">
+        <SectionHeading
+          index="05"
+          title="Recommendations"
+          icon={MessageSquareQuoteIcon}
+          description="Kind words from the people and teams I've had the privilege to collaborate with."
+        />
+        <div className="flex flex-col gap-4">
+          {DATA.recommendations.map((rec, id) => (
+            <ScrollReveal key={rec.name} delay={id * 0.06}>
+              <RecommendationCard
+                name={rec.name}
+                role={rec.role}
+                relationship={rec.relationship}
+                avatarUrl={rec.avatarUrl}
+                recommendation={rec.recommendation}
+                linkedinUrl={rec.linkedinUrl}
+              />
+            </ScrollReveal>
+          ))}
+        </div>
+      </section>
+
+      <section id="education" className="flex flex-col gap-8">
+        <SectionHeading index="06" title="Education" icon={GraduationCapIcon} />
+        <div className="flex flex-col">
+          {DATA.education.map((education, id) => (
+            <ScrollReveal key={education.school} delay={id * 0.05}>
+              <ResumeCard
+                href={education.href}
+                logoUrl={education.logoUrl}
+                altText={education.school}
+                title={education.school}
+                subtitle={education.degree}
+                period={`${education.start} - ${education.end}`}
+                isLast={id === DATA.education.length - 1}
+              />
+            </ScrollReveal>
+          ))}
+        </div>
+      </section>
+
+      <section id="contact" className="flex flex-col items-start gap-6 pb-8">
+        <SectionHeading index="07" title="Get in Touch" icon={MailIcon} />
+        <ScrollReveal className="w-full">
+          <div className="rounded-lg border border-border bg-card px-6 py-8 sm:px-10 sm:py-10">
+            <p className="max-w-[520px] text-muted-foreground md:text-lg">
+              Have a question? Send me a message on{" "}
+              <a
+                className="font-semibold text-foreground underline decoration-accent decoration-2 underline-offset-4 hover:text-accent-text"
+                href="https://www.linkedin.com/in/devsourav"
+                target="_blank"
               >
-                <ResumeCard
-                  key={education.school}
-                  href={education.href}
-                  logoUrl={education.logoUrl}
-                  altText={education.school}
-                  title={education.school}
-                  subtitle={education.degree}
-                  period={`${education.start} - ${education.end}`}
-                />
-              </BlurFade>
-            ))}
+                LinkedIn
+              </a>{" "}
+              and I&rsquo;ll reply as soon as possible, or email me directly at{" "}
+              <a
+                href="mailto:souravpathakatwork@gmail.com"
+                className="font-semibold text-foreground underline decoration-accent decoration-2 underline-offset-4 hover:text-accent-text"
+              >
+                souravpathakatwork@gmail.com
+              </a>
+              .
+            </p>
+            <p className="mt-4 font-mono-label text-xs text-muted-foreground">
+              <span className="text-accent-text">$</span> status --looking-forward-to-hearing-from-you
+            </p>
           </div>
-        </section>
-
-        <section id="contact">
-          <div className="grid items-center justify-center gap-4 px-4 text-center md:px-6 w-full py-12">
-            <BlurFade delay={BLUR_FADE_DELAY * 16}>
-              <div className="space-y-3">
-                <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
-                  Contact Me
-                </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                  Get in Touch
-                </h2>
-                <p className="mx-auto max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Have a question? Send me a message on{" "}
-                  <a
-                    className="font-bold underline"
-                    href="https://www.linkedin.com/in/devsourav"
-                    target="_blank"
-                  >
-                    LinkedIn
-                  </a>{" "}
-                  and I’ll reply as soon as possible!
-                  <br />
-                  You can also email me at{" "}
-                  <a
-                    href="mailto:souravpathakatwork@gmail.com"
-                    className="font-semibold underline"
-                  >
-                    souravpathakatwork@gmail.com
-                  </a>
-                  <br />
-                  Looking forward to hearing from you! 😊
-                </p>
-              </div>
-            </BlurFade>
-          </div>
-        </section>
-      </main>
-    </>
+        </ScrollReveal>
+      </section>
+    </main>
   );
 }
