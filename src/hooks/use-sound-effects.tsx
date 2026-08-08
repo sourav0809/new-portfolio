@@ -75,19 +75,19 @@ export function SoundProvider({ children }: { children: React.ReactNode }) {
 
       switch (kind) {
         case "hover":
-          playTone(ctx, { freq: 1400, duration: 0.05, gain: 0.09, type: "sine" });
+          playTone(ctx, { freq: 1400, duration: 0.06, gain: 0.16, type: "sine" });
           break;
         case "click":
-          playTone(ctx, { freq: 720, duration: 0.08, gain: 0.18, type: "square" });
+          playTone(ctx, { freq: 720, duration: 0.1, gain: 0.32, type: "square" });
           break;
         case "toggle":
-          playTone(ctx, { freq: 880, duration: 0.1, gain: 0.16, type: "triangle" });
+          playTone(ctx, { freq: 880, duration: 0.12, gain: 0.28, type: "triangle" });
           break;
         case "expand":
-          playTone(ctx, { freq: 520, duration: 0.09, gain: 0.14, type: "sine" });
+          playTone(ctx, { freq: 520, duration: 0.11, gain: 0.24, type: "sine" });
           break;
         case "collapse":
-          playTone(ctx, { freq: 340, duration: 0.09, gain: 0.14, type: "sine" });
+          playTone(ctx, { freq: 340, duration: 0.11, gain: 0.24, type: "sine" });
           break;
       }
     },
