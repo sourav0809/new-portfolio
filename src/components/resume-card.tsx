@@ -47,6 +47,15 @@ const boldify = (text: string) => {
     "API Gateway",
     "Bento Grid Layout",
     "25+",
+    "voice-based note taking",
+    "AI and image-based template creation",
+    "goal suggestions",
+    "therapy workflows",
+    "patient tracking",
+    "UI/UX redesign",
+    "note-taking workflow",
+    "lazy loading",
+    "persistent state",
   ];
 
   let result = text;

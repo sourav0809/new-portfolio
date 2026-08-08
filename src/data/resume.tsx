@@ -12,12 +12,10 @@ export const DATA = {
   summary: (
     <p className="text-base prose max-w-full text-pretty font-sans text-muted-foreground dark:prose-invert mt-2">
       Since 10th grade, I&lsquo;ve been passionate about web development and
-      coding. In early 2023, I joined{" "}
-      <a href="https://www.sharpener.tech/" target="_blank">
-        Sharpener
-      </a>{" "}
-      to learn from mentors—later, I became a Software Engineer and one of the
-      most helpful mentors there!
+      coding. What started as an interest gradually turned into a career, and
+      over the years I&lsquo;ve grown as a Software Engineer while working on
+      different products, solving real-world problems, and helping other
+      developers along the way.
     </p>
   ),
   avatarUrl: "/me.jpeg",
@@ -89,6 +87,21 @@ export const DATA = {
 
   work: [
     {
+      company: "Ocean Friends",
+      href: "https://oceanfriends.ai",
+      badges: [],
+      location: "Remote",
+      title: "Software Engineer",
+      logoUrl: "/oceanFriendsLogo.png",
+      start: "Apr 2026",
+      end: "Present",
+      description: `
+              • Implemented AI features across clinical workflows, including voice-based note taking, AI and image-based template creation, and goal suggestions.
+              • Added new therapy workflows and patient tracking features to support different clinical requirements.
+              • Contributed to the UI/UX redesign of the platform, including the main note-taking workflow used by therapists on a regular basis.
+              • Improved application performance by implementing lazy loading, reducing unnecessary API calls, adding persistent state, and refactoring components while following better coding practices.`,
+    },
+    {
       company: "Sharpener",
       href: "https://www.sharpener.tech/",
       badges: [],
@@ -96,7 +109,7 @@ export const DATA = {
       title: "SDE 1",
       logoUrl: "/sharpenerLogo.png",
       start: "Nov 2024",
-      end: "Present",
+      end: "Mar 2026",
       description: `
               • Built an AI exam evaluation platform using Gemini, Lambda, and SQS that grades over 100 student answer sheets in less than 10 minutes and provides detailed feedback for every student answer and each question.
               • Rebuilt the landing page using Next.js and ShadCN UI, increasing performance score from 40% to over 90%, resulting in better UX, speed, and SEO.
