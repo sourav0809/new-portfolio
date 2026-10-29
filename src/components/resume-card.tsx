@@ -47,27 +47,36 @@ const boldify = (text: string) => {
     "API Gateway",
     "Bento Grid Layout",
     "25+",
-    "voice-based note taking",
-    "AI and image-based template creation",
-    "goal suggestions",
-    "therapy workflows",
-    "patient tracking",
-    "UI/UX redesign",
-    "note-taking workflow",
+    "~90%",
+    "~40%",
+    "clinical documentation module",
+    "automatic retries",
+    "Sentry-based logging and monitoring",
+    "AI voice-to-note engine",
+    "Whisper and Claude",
+    "most-used features on the platform",
+    "configurable template builder",
+    "tables, images, checkboxes, and custom sections",
+    "AI-powered goal management system",
+    "personalized goal recommendations",
+    "Goals Library",
+    "documentation UI/UX",
+    "web and mobile (iOS and Android)",
     "lazy loading",
-    "persistent state",
+    "persistent state management",
   ];
 
-  let result = text;
-  keywords.forEach((word) => {
-    const regex = new RegExp(`(${word})`, "gi");
-    result = result.replace(
-      regex,
-      `<span class="font-semibold text-foreground">${word}</span>`
-    );
-  });
+  // Single pass, longest first, so overlapping keywords (e.g. "Lambda" inside
+  // "AWS Lambda") don't produce nested or broken spans.
+  const pattern = Array.from(new Set(keywords))
+    .sort((a, b) => b.length - a.length)
+    .map((word) => word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"))
+    .join("|");
 
-  return result;
+  return text.replace(
+    new RegExp(`(${pattern})`, "gi"),
+    `<span class="font-semibold text-foreground">$1</span>`
+  );
 };
 interface ResumeCardProps {
   logoUrl: string;

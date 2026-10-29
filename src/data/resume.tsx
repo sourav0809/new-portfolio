@@ -109,10 +109,11 @@ export const DATA = {
       start: "Apr 2026",
       end: "Present",
       description: `
-              • Implemented AI features across clinical workflows, including voice-based note taking, AI and image-based template creation, and goal suggestions.
-              • Added new therapy workflows and patient tracking features to support different clinical requirements.
-              • Contributed to the UI/UX redesign of the platform, including the main note-taking workflow used by therapists on a regular basis.
-              • Improved application performance by implementing lazy loading, reducing unnecessary API calls, adding persistent state, and refactoring components while following better coding practices.`,
+              • Owned the clinical documentation module, the platform’s most-used feature where therapists spend ~90% of their time; re-architected its APIs with well-defined request flows, automatic retries, and Sentry-based logging and monitoring, cutting failed API requests by ~40% and hardening product stability.
+              • Shipped an AI voice-to-note engine using Whisper and Claude that turns therapists’ spoken sessions into structured clinical documentation, quickly becoming one of the most-used features on the platform through strong therapist adoption.
+              • Built a configurable template builder for clinical documentation with tables, images, checkboxes, and custom sections, letting therapists track sessions and patient progress in formats tailored to their own clinical workflows.
+              • Engineered an AI-powered goal management system with structured goal generation, personalized goal recommendations, and a reusable Goals Library with smart filters by patient age, diagnosis, and other clinical criteria, helping therapists find relevant goals and standardize them across patients.
+              • Enhanced documentation UI/UX across web and mobile (iOS and Android) applications, improving the therapist experience through workflow refinements; optimized application performance with lazy loading, reduced redundant API calls, persistent state management, and component refactoring.`,
     },
     {
       company: "Sharpener",
