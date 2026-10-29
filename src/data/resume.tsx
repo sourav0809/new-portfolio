@@ -69,7 +69,7 @@ export const DATA = {
     social: {
       Resume: {
         name: "Resume",
-        url: "https://drive.google.com/drive/folders/10K6ZtQeY3RXx94pwTQo7KyM_Q28hiDTY?usp=sharing",
+        url: "https://drive.google.com/file/d/1u66jRsi1M5ZEly-yHfnoYKUNP1XLhXvd/view?usp=sharing",
         icon: NotebookIcon,
 
         navbar: true,
