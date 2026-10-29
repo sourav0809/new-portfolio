@@ -88,7 +88,7 @@ export function RecommendationCard({
             <p className="text-sm text-muted-foreground mt-0.5 leading-snug">
               {role}
             </p>
-            <p className="mt-1 font-mono-label text-xs text-accent-text">
+            <p className="mt-1 text-xs text-muted-foreground">
               {relationship}
             </p>
           </div>
@@ -147,10 +147,10 @@ export function RecommendationCard({
               e.stopPropagation();
               toggleExpanded();
             }}
-            className="mt-3 flex items-center gap-1 font-mono-label text-xs font-medium text-muted-foreground hover:text-accent-text transition-colors duration-200 group"
+            className="mt-3 flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 group"
           >
-            <span className="underline underline-offset-2 decoration-muted-foreground/30 group-hover:decoration-accent/60 transition-colors">
-              {isExpanded ? "show_less()" : "read_more()"}
+            <span className="underline underline-offset-2 decoration-muted-foreground/30 group-hover:decoration-foreground/60 transition-colors">
+              {isExpanded ? "Show less" : "Read more"}
             </span>
             {isExpanded ? (
               <ChevronUp className="size-3.5 transition-transform" />

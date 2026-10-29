@@ -23,7 +23,7 @@ export function SectionHeading({
         <div className="h-px flex-1 bg-border" />
         <Icon className="size-4 text-muted-foreground" strokeWidth={1.75} />
       </div>
-      <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">{title}</h2>
+      <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">{title}</h2>
       {description && (
         <p className="max-w-[600px] text-base text-muted-foreground">
           {description}

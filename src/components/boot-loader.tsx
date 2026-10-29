@@ -1,23 +1,17 @@
 "use client";
 
+import { DATA } from "@/data/resume";
 import { useDesktopMotion } from "@/hooks/use-desktop-motion";
 import { useSoundEffects } from "@/hooks/use-sound-effects";
 import { gsap } from "gsap";
 import { useEffect, useRef, useState } from "react";
 
-const BOOT_LINES = [
-  "initializing session...",
-  "loading profile: sourav_pathak",
-  "mounting work_experience[]",
-  "compiling skills.json",
-  "ready.",
-];
+const BOOT_STEPS = 5;
 
 export function BootLoader({ children }: { children: React.ReactNode }) {
   const isDesktopMotion = useDesktopMotion();
   const { play } = useSoundEffects();
   const [phase, setPhase] = useState<"idle" | "booting" | "done">("idle");
-  const [lineIndex, setLineIndex] = useState(0);
   const [progress, setProgress] = useState(0);
   const overlayRef = useRef<HTMLDivElement>(null);
   const hasRun = useRef(false);
@@ -46,7 +40,7 @@ export function BootLoader({ children }: { children: React.ReactNode }) {
     let cancelled = false;
     const runLine = (i: number) => {
       if (cancelled) return;
-      if (i >= BOOT_LINES.length) {
+      if (i >= BOOT_STEPS) {
         window.sessionStorage.setItem("booted", "true");
         gsap.to(overlayRef.current, {
           clipPath: "inset(0 0 100% 0)",
@@ -57,8 +51,7 @@ export function BootLoader({ children }: { children: React.ReactNode }) {
         });
         return;
       }
-      setLineIndex(i);
-      setProgress(Math.round(((i + 1) / BOOT_LINES.length) * 100));
+      setProgress(Math.round(((i + 1) / BOOT_STEPS) * 100));
       play("expand");
       setTimeout(() => runLine(i + 1), 260);
     };
@@ -77,26 +70,15 @@ export function BootLoader({ children }: { children: React.ReactNode }) {
           className="fixed inset-0 z-[100] flex flex-col justify-center bg-background px-8"
           style={{ clipPath: "inset(0 0 0% 0)" }}
         >
-          <div className="mx-auto flex w-full max-w-md flex-col gap-3 font-mono-label text-sm">
-            {BOOT_LINES.slice(0, lineIndex + 1).map((line, i) => (
-              <div key={line} className="flex items-center gap-2 text-foreground">
-                <span className="text-accent-text">
-                  {i === BOOT_LINES.length - 1 ? "$" : ">"}
-                </span>
-                <span>{line}</span>
-                {i === lineIndex && i !== BOOT_LINES.length - 1 && (
-                  <span className="animate-pulse text-accent-text">_</span>
-                )}
-              </div>
-            ))}
-            <div className="mt-2 h-px w-full bg-border">
+          <div className="mx-auto flex w-48 flex-col items-center gap-4">
+            <span className="text-lg font-semibold tracking-tight text-foreground">
+              {DATA.name}
+            </span>
+            <div className="h-px w-full bg-border">
               <div
                 className="h-px bg-accent-text transition-all duration-300 ease-out"
                 style={{ width: `${progress}%` }}
               />
-            </div>
-            <div className="text-right text-xs text-muted-foreground tabular-nums">
-              {progress}%
             </div>
           </div>
         </div>

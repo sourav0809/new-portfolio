@@ -85,7 +85,7 @@ export function ProjectCard({
             <ArrowUpRightIcon className="size-4" />
           </Link>
         </div>
-        <time className="font-mono-label text-xs tabular-nums text-accent-text">
+        <time className="font-mono-label text-xs tabular-nums text-muted-foreground">
           {dates}
         </time>
         <div className="hidden font-sans text-xs underline print:visible">
