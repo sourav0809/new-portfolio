@@ -8,7 +8,7 @@ export const DATA = {
   location: "West Bengal, India",
   locationLink: "",
   description:
-    "Software Engineer & Mentor | Passionate about building, fixing, and debugging. Always up for tech talk and very active on LinkedIn. ",
+    "Software Engineer at Ocean Friends, building AI features for clinical documentation.",
   summary: (
     <p className="text-base sm:text-lg prose prose-lg max-w-full text-pretty font-sans text-muted-foreground dark:prose-invert mt-2">
       Since 10th grade, I&lsquo;ve been passionate about web development and
@@ -146,7 +146,7 @@ export const DATA = {
       location: "Remote",
       title: "SDE Intern",
       logoUrl: "/sharpenerLogo.png",
-      start: "March 2024",
+      start: "Mar 2024",
       end: "Nov 2024",
       description: `
           • Built a CSS Compiler for students, allowing them to write, test, and visualize CSS code in real-time, making learning more interactive and efficient.

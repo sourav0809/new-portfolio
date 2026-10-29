@@ -87,9 +87,30 @@ interface ResumeCardProps {
   badges?: readonly string[];
   period: string;
   description?: string;
+  /** Several roles at the same company, shown under one entry. */
+  roles?: readonly { title: string; period: string; description?: string }[];
   isCurrent?: boolean;
   isLast?: boolean;
 }
+
+const Bullets = ({ description }: { description: string }) => (
+  <>
+    {description.split("•").map((item, index) => {
+      const trimmed = item.trim();
+      if (!trimmed) return null;
+
+      return (
+        <li
+          key={index}
+          className="ml-4 list-disc leading-relaxed marker:text-muted-foreground"
+          dangerouslySetInnerHTML={{
+            __html: boldify(trimmed),
+          }}
+        />
+      );
+    })}
+  </>
+);
 export const ResumeCard = ({
   logoUrl,
   altText,
@@ -99,9 +120,11 @@ export const ResumeCard = ({
   badges,
   period,
   description,
+  roles,
   isCurrent,
   isLast,
 }: ResumeCardProps) => {
+  const hasDetails = Boolean(description || roles?.some((role) => role.description));
   const [isExpanded, setIsExpanded] = React.useState(Boolean(isCurrent));
   const { play } = useSoundEffects();
 
@@ -173,8 +196,13 @@ export const ResumeCard = ({
               {subtitle}
             </div>
           )}
+          {roles && (
+            <div className="mt-0.5 text-sm text-muted-foreground sm:text-base">
+              {roles.map((role) => role.title).join(" · ")}
+            </div>
+          )}
 
-          {description && (
+          {hasDetails && (
             <>
               <motion.div
                 initial={false}
@@ -188,25 +216,26 @@ export const ResumeCard = ({
                 }}
                 className="mt-3 flex w-full flex-col gap-y-2.5 overflow-hidden text-sm sm:text-base"
               >
-                {description.split("•").map((item, index) => {
-                  const trimmed = item.trim();
-                  if (!trimmed) return null;
-
-                  return (
-                    <li
-                      key={index}
-                      className="ml-4 list-disc leading-relaxed marker:text-accent"
-                      dangerouslySetInnerHTML={{
-                        __html: boldify(trimmed),
-                      }}
-                    />
-                  );
-                })}
+                {description && <Bullets description={description} />}
+                {roles?.map((role, index) => (
+                  <div
+                    key={role.title}
+                    className={cn("flex flex-col gap-y-2.5", index > 0 && "mt-3")}
+                  >
+                    <div className="flex flex-wrap items-baseline justify-between gap-x-3">
+                      <span className="font-semibold text-foreground">{role.title}</span>
+                      <span className="font-mono-label text-xs tabular-nums text-muted-foreground">
+                        {role.period}
+                      </span>
+                    </div>
+                    {role.description && <Bullets description={role.description} />}
+                  </div>
+                ))}
               </motion.div>
               <button
                 type="button"
                 onClick={toggleExpanded}
-                className="mt-2 inline-flex items-center gap-1 font-mono-label text-xs text-muted-foreground transition-colors hover:text-accent-text"
+                className="mt-2 inline-flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-foreground"
               >
                 <PlusIcon
                   className={cn(
@@ -214,7 +243,7 @@ export const ResumeCard = ({
                     isExpanded && "rotate-45"
                   )}
                 />
-                {isExpanded ? "collapse" : "expand"}
+                {isExpanded ? "Hide details" : "Show details"}
               </button>
             </>
           )}

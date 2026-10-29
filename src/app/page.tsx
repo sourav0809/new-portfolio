@@ -15,6 +15,14 @@ import {
   WrenchIcon,
 } from "lucide-react";
 
+// Consecutive roles at the same company (newest first) render as one entry.
+const WORK = DATA.work.reduce<(typeof DATA.work)[number][][]>((groups, work) => {
+  const last = groups[groups.length - 1];
+  if (last && last[0].company === work.company) last.push(work);
+  else groups.push([work]);
+  return groups;
+}, []);
+
 export default function Page() {
   return (
     <main className="mx-auto flex min-h-[100dvh] max-w-3xl flex-col gap-20 px-6 py-16 sm:py-24">
@@ -22,7 +30,7 @@ export default function Page() {
         <HeroSection />
       </section>
 
-      <section id="about" className="flex flex-col gap-6">
+      <section id="about" className="flex flex-col gap-8">
         <SectionHeading index="01" title="About" icon={UserIcon} />
         <ScrollReveal>{DATA.summary}</ScrollReveal>
       </section>
@@ -34,32 +42,47 @@ export default function Page() {
           icon={BriefcaseIcon}
         />
         <div className="flex flex-col">
-          {DATA.work.map((work, id) => (
-            <ScrollReveal key={work.company + work.title} delay={id * 0.05}>
-              <ResumeCard
-                logoUrl={work.logoUrl}
-                altText={work.company}
-                title={work.company}
-                subtitle={work.title}
-                href={work.href}
-                badges={work.badges}
-                period={`${work.start} - ${work.end ?? "Present"}`}
-                description={work.description}
-                isCurrent={work.end === "Present"}
-                isLast={id === DATA.work.length - 1}
-              />
-            </ScrollReveal>
-          ))}
+          {WORK.map((roles, id) => {
+            const [latest] = roles;
+            const earliest = roles[roles.length - 1];
+            const isGrouped = roles.length > 1;
+
+            return (
+              <ScrollReveal key={latest.company + latest.title} delay={id * 0.05}>
+                <ResumeCard
+                  logoUrl={latest.logoUrl}
+                  altText={latest.company}
+                  title={latest.company}
+                  subtitle={isGrouped ? undefined : latest.title}
+                  href={latest.href}
+                  badges={latest.badges}
+                  period={`${earliest.start} - ${latest.end ?? "Present"}`}
+                  description={isGrouped ? undefined : latest.description}
+                  roles={
+                    isGrouped
+                      ? roles.map((role) => ({
+                          title: role.title,
+                          period: `${role.start} - ${role.end}`,
+                          description: role.description,
+                        }))
+                      : undefined
+                  }
+                  isCurrent={latest.end === "Present"}
+                  isLast={id === WORK.length - 1}
+                />
+              </ScrollReveal>
+            );
+          })}
         </div>
       </section>
 
-      <section id="skills" className="flex flex-col gap-6">
+      <section id="skills" className="flex flex-col gap-8">
         <SectionHeading index="03" title="Skills" icon={WrenchIcon} />
         <div className="flex flex-col gap-5">
           {DATA.skillCategories.map((group, groupId) => (
             <ScrollReveal key={group.category} delay={groupId * 0.06}>
               <div className="flex flex-col gap-2 sm:flex-row sm:gap-4">
-                <h3 className="w-full shrink-0 font-mono-label text-xs uppercase tracking-wider text-accent-text sm:w-40">
+                <h3 className="w-full shrink-0 font-mono-label text-xs uppercase tracking-wider text-muted-foreground sm:w-40">
                   {group.category}
                 </h3>
                 <div className="flex flex-wrap gap-1.5">
@@ -75,7 +98,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section id="projects" className="flex flex-col gap-6">
+      <section id="projects" className="flex flex-col gap-8">
         <SectionHeading
           index="04"
           title="Projects"
@@ -101,7 +124,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section id="recommendations" className="flex flex-col gap-6">
+      <section id="recommendations" className="flex flex-col gap-8">
         <SectionHeading
           index="05"
           title="Recommendations"
@@ -143,8 +166,8 @@ export default function Page() {
         </div>
       </section>
 
-      <section id="contact" className="flex flex-col items-start gap-6 pb-8">
-        <SectionHeading index="07" title="Get in Touch" icon={MailIcon} />
+      <section id="contact" className="flex flex-col items-start gap-8 pb-8">
+        <SectionHeading index="07" title="Get in Touch" icon={MailIcon} className="w-full" />
         <ScrollReveal className="w-full">
           <div className="rounded-lg border border-border bg-card px-6 py-8 sm:px-10 sm:py-10">
             <p className="max-w-[520px] text-muted-foreground md:text-lg">
@@ -164,9 +187,6 @@ export default function Page() {
                 souravpathakatwork@gmail.com
               </a>
               .
-            </p>
-            <p className="mt-4 font-mono-label text-xs text-muted-foreground">
-              <span className="text-accent-text">$</span> status --looking-forward-to-hearing-from-you
             </p>
           </div>
         </ScrollReveal>

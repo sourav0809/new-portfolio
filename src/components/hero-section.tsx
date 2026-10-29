@@ -8,8 +8,6 @@ import { gsap } from "gsap";
 import { Download } from "lucide-react";
 import { useEffect, useRef } from "react";
 
-const ROLE_LINE = "Software Engineer / Building AI-native products";
-
 export function HeroSection() {
   const isDesktopMotion = useDesktopMotion();
   const { play } = useSoundEffects();
@@ -30,14 +28,9 @@ export function HeroSection() {
           duration: 0.7,
         })
         .to(
-          ".hero-role",
-          { opacity: 1, y: 0, clipPath: "inset(0 0 0% 0)", duration: 0.6 },
-          "-=0.4"
-        )
-        .to(
           ".hero-desc",
           { opacity: 1, y: 0, clipPath: "inset(0 0 0% 0)", duration: 0.6 },
-          "-=0.35"
+          "-=0.4"
         )
         .to(
           ".hero-cta",
@@ -63,15 +56,10 @@ export function HeroSection() {
     >
       <div className="flex flex-1 flex-col gap-4">
         <h1
-          className={`hero-name ${revealClass} text-4xl font-bold tracking-tight text-balance sm:text-5xl xl:text-6xl`}
+          className={`hero-name ${revealClass} text-4xl font-semibold tracking-tight text-balance sm:text-5xl xl:text-6xl`}
         >
           {DATA.name}
         </h1>
-        <p
-          className={`hero-role ${revealClass} font-mono-label text-sm text-muted-foreground sm:text-base`}
-        >
-          {ROLE_LINE}
-        </p>
         <p
           className={`hero-desc ${revealClass} max-w-[560px] text-base text-muted-foreground md:text-lg`}
         >
