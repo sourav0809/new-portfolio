@@ -14,7 +14,6 @@ export function HeroSection() {
   const isDesktopMotion = useDesktopMotion();
   const { play } = useSoundEffects();
   const rootRef = useRef<HTMLDivElement>(null);
-  const cursorRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     if (!isDesktopMotion || !rootRef.current) return;
@@ -24,17 +23,12 @@ export function HeroSection() {
 
       tl.set(".hero-reveal", { opacity: 0, y: 24, clipPath: "inset(0 0 100% 0)" })
         .set(".hero-avatar", { opacity: 0, scale: 0.9 })
-        .to(".hero-eyebrow", {
+        .to(".hero-name", {
           opacity: 1,
           y: 0,
           clipPath: "inset(0 0 0% 0)",
-          duration: 0.5,
+          duration: 0.7,
         })
-        .to(
-          ".hero-name",
-          { opacity: 1, y: 0, clipPath: "inset(0 0 0% 0)", duration: 0.7 },
-          "-=0.25"
-        )
         .to(
           ".hero-role",
           { opacity: 1, y: 0, clipPath: "inset(0 0 0% 0)", duration: 0.6 },
@@ -55,14 +49,6 @@ export function HeroSection() {
           { opacity: 1, scale: 1, duration: 0.8, ease: "back.out(1.6)" },
           "-=0.9"
         );
-
-      gsap.to(cursorRef.current, {
-        opacity: 0,
-        repeat: -1,
-        yoyo: true,
-        duration: 0.6,
-        ease: "steps(1)",
-      });
     }, rootRef);
 
     return () => ctx.revert();
@@ -76,14 +62,6 @@ export function HeroSection() {
       className="flex flex-col-reverse items-start gap-8 lg:flex-row lg:items-center lg:justify-between"
     >
       <div className="flex flex-1 flex-col gap-4">
-        <p
-          className={`hero-eyebrow ${revealClass} font-mono-label text-xs tracking-widest text-accent-text`}
-        >
-          <span className="text-muted-foreground">$</span> whoami
-          <span ref={cursorRef} className="ml-1 text-accent-text">
-            _
-          </span>
-        </p>
         <h1
           className={`hero-name ${revealClass} text-4xl font-bold tracking-tight text-balance sm:text-5xl xl:text-6xl`}
         >
