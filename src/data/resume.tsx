@@ -4,7 +4,7 @@ import { HomeIcon, NotebookIcon } from "lucide-react";
 export const DATA = {
   name: "Sourav Pathak",
   initials: "SP",
-  url: "https://www.devsourav.online",
+  url: "https://www.itssourav.online",
   location: "West Bengal, India",
   locationLink: "",
   description:
@@ -182,6 +182,43 @@ export const DATA = {
     },
   ],
   projects: [
+    {
+      title: "TakeMyNote",
+      href: "https://www.takemynote.online",
+      dates: "Sep 2026 - Present",
+      active: true,
+      description:
+        "A calm, private notebook that works without an account. Rich block editor, 21 free templates and AI writing help with your own OpenAI, Google or Anthropic key. Optional accounts sync notes across devices, and any note can be shared with a public link. Open source and launched on Product Hunt.",
+      technologies: [
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "ShadCN UI",
+        "BlockNote",
+        "Better Auth",
+        "MongoDB",
+        "Vercel Blob",
+      ],
+      links: [
+        {
+          type: "Website",
+          href: "https://www.takemynote.online",
+          icon: <Icons.globe className="size-3" />,
+        },
+        {
+          type: "Source",
+          href: "https://github.com/sourav0809/takemynote",
+          icon: <Icons.github className="size-3" />,
+        },
+        {
+          type: "Product Hunt",
+          href: "https://www.producthunt.com/products/takemynote",
+          icon: <Icons.productHunt className="size-3" />,
+        },
+      ],
+      image: "/takemynote.png",
+      video: "",
+    },
     {
       title: "OpenChat",
       href: "https://openchat.itssourav.online/",
