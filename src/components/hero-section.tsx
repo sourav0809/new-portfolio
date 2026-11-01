@@ -81,7 +81,8 @@ export function HeroSection() {
       </div>
       <div className="hero-avatar shrink-0">
         <Avatar className="size-24 border-2 border-accent/40 shadow-[0_0_0_6px_hsl(var(--accent)/0.08)] sm:size-32">
-          <AvatarImage alt={DATA.name} src={DATA.avatarUrl} />
+          {/* The photo is portrait: fill the circle and keep the face in frame. */}
+          <AvatarImage alt={DATA.name} src={DATA.avatarUrl} className="object-cover object-[50%_12%]" />
           <AvatarFallback>{DATA.initials}</AvatarFallback>
         </Avatar>
       </div>

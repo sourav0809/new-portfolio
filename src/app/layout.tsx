@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { SoundProvider } from "@/hooks/use-sound-effects";
 import { DATA } from "@/data/resume";
+import { SITE_DESCRIPTION, SITE_TITLE } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import type { Metadata, Viewport } from "next";
 import { Space_Grotesk as FontSans, JetBrains_Mono as FontMono } from "next/font/google";
@@ -19,10 +20,6 @@ const fontMono = FontMono({
   subsets: ["latin"],
   variable: "--font-mono",
 });
-
-const SITE_TITLE = `${DATA.name} · Software Engineer`;
-const SITE_DESCRIPTION =
-  "Sourav Pathak is a Software Engineer at Ocean Friends, building AI features for clinical documentation. Full-stack developer working with Next.js, React, Node.js and Generative AI, and the creator of TakeMyNote and OpenChat.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(DATA.url),
@@ -79,7 +76,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#f8f9fb" },
-    { media: "(prefers-color-scheme: dark)", color: "#0b0e14" },
+    { media: "(prefers-color-scheme: dark)", color: "#0b0d12" },
   ],
 };
 
@@ -91,8 +88,7 @@ const PERSON_JSON_LD = {
   url: DATA.url,
   image: new URL(DATA.avatarUrl, DATA.url).toString(),
   jobTitle: "Software Engineer",
-  description: DATA.description,
-  worksFor: { "@type": "Organization", name: DATA.work[0].company, url: DATA.work[0].href },
+  description: SITE_DESCRIPTION,
   address: { "@type": "PostalAddress", addressRegion: "West Bengal", addressCountry: "IN" },
   email: `mailto:${DATA.contact.email}`,
   sameAs: [DATA.contact.social.GitHub.url, DATA.contact.social.LinkedIn.url],
