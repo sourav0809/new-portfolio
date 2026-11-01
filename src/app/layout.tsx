@@ -1,31 +1,63 @@
+import { BootLoader } from "@/components/boot-loader";
 import Navbar from "@/components/navbar";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { SoundProvider } from "@/hooks/use-sound-effects";
 import { DATA } from "@/data/resume";
+import { SITE_DESCRIPTION, SITE_TITLE } from "@/lib/site";
 import { cn } from "@/lib/utils";
-import type { Metadata } from "next";
-import { Inter as FontSans } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Space_Grotesk as FontSans, JetBrains_Mono as FontMono } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
 });
 
+const fontMono = FontMono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL(DATA.url),
   title: {
-    default: DATA.name,
+    default: SITE_TITLE,
     template: `%s | ${DATA.name}`,
   },
-  description: DATA.description,
+  description: SITE_DESCRIPTION,
+  applicationName: DATA.name,
+  authors: [{ name: DATA.name, url: DATA.url }],
+  creator: DATA.name,
+  keywords: [
+    "Sourav Pathak",
+    "Software Engineer",
+    "Full-stack developer",
+    "Next.js developer",
+    "React developer",
+    "Generative AI",
+    "Portfolio",
+    "West Bengal",
+    "India",
+  ],
+  alternates: { canonical: "/" },
+  // Images come from app/opengraph-image.png and app/twitter-image.png.
   openGraph: {
-    title: `${DATA.name}`,
-    description: DATA.description,
-    url: DATA.url,
-    siteName: `${DATA.name}`,
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    url: "/",
+    siteName: DATA.name,
     locale: "en_US",
-    type: "website",
+    type: "profile",
+    firstName: "Sourav",
+    lastName: "Pathak",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
   },
   robots: {
     index: true,
@@ -38,14 +70,28 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  twitter: {
-    title: `${DATA.name}`,
-    card: "summary_large_image",
-  },
-  verification: {
-    google: "",
-    yandex: "",
-  },
+  formatDetection: { telephone: false, email: false, address: false },
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f8f9fb" },
+    { media: "(prefers-color-scheme: dark)", color: "#0b0d12" },
+  ],
+};
+
+/** Tells search engines who this site is about (schema.org Person). */
+const PERSON_JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: DATA.name,
+  url: DATA.url,
+  image: new URL(DATA.avatarUrl, DATA.url).toString(),
+  jobTitle: "Software Engineer",
+  description: SITE_DESCRIPTION,
+  address: { "@type": "PostalAddress", addressRegion: "West Bengal", addressCountry: "IN" },
+  email: `mailto:${DATA.contact.email}`,
+  sameAs: [DATA.contact.social.GitHub.url, DATA.contact.social.LinkedIn.url],
 };
 
 export default function RootLayout({
@@ -57,14 +103,25 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased max-w-2xl mx-auto py-12 sm:py-24 px-6",
-          fontSans.variable
+          "min-h-screen bg-background font-sans antialiased mx-auto",
+          fontSans.variable,
+          fontMono.variable
         )}
       >
+        <script
+          type="application/ld+json"
+          // Static data from DATA; "<" is escaped so it can't close the script tag.
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(PERSON_JSON_LD).replace(/</g, "\\u003c") }}
+        />
         <ThemeProvider attribute="class" defaultTheme="light">
           <TooltipProvider delayDuration={0}>
-            {children}
-            <Navbar />
+            <SoundProvider>
+              <BootLoader>
+                {children}
+                <Navbar />
+              </BootLoader>
+              <Analytics />
+            </SoundProvider>
           </TooltipProvider>
         </ThemeProvider>
       </body>

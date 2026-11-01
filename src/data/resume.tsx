@@ -4,61 +4,72 @@ import { HomeIcon, NotebookIcon } from "lucide-react";
 export const DATA = {
   name: "Sourav Pathak",
   initials: "SP",
-  url: "https://www.devsourav.online",
+  url: "https://www.itssourav.online",
   location: "West Bengal, India",
   locationLink: "",
   description:
-    "Software Engineer & Mentor | Passionate about building, fixing, and debugging. Always up for tech talk and very active on LinkedIn. ",
+    "Software Engineer at Ocean Friends, building AI features for clinical documentation.",
   summary: (
-    <p className="text-base prose max-w-full text-pretty font-sans text-muted-foreground dark:prose-invert mt-2">
+    <p className="text-base sm:text-lg prose prose-lg max-w-full text-pretty font-sans text-muted-foreground dark:prose-invert mt-2">
       Since 10th grade, I&lsquo;ve been passionate about web development and
-      coding. In early 2023, I joined{" "}
-      <a href="https://www.sharpener.tech/" target="_blank">
-        Sharpener
-      </a>{" "}
-      to learn from mentors—later, I became a Software Engineer and one of the
-      most helpful mentors there!
+      coding. What started as an interest gradually turned into a career, and
+      over the years I&lsquo;ve grown as a Software Engineer while working on
+      different products, solving real-world problems, and helping other
+      developers along the way.
     </p>
   ),
-  avatarUrl: "/me.png",
-  skills: [
-    "HTML",
-    "CSS",
-    "JavaScript",
-    "TypeScript",
-    "React",
-    "Next.js",
-    "Node.js",
-    "PostgreSQL",
-    "SQL",
-    "SCSS",
-    "Tailwind CSS",
-    "Material UI",
-    "Shadcn UI",
-    "Redux",
-    "Redux Toolkit",
-    "React Router",
-    "React Native",
-    "Express",
-    "MySQL",
-    "NestJS",
-    "Firebase",
-    "MongoDB",
-    "AWS ( EC2, RDS, Lambda, SQS, S3, API Gateway )",
-    "CI/CD (GitHub Actions)",
-    "Git",
-    "GitHub",
-    "Googling",
-    "Prompt Engineering",
+  avatarUrl: "/me.jpeg",
+  skillCategories: [
+    {
+      category: "Languages",
+      skills: ["HTML", "CSS", "SCSS", "JavaScript", "TypeScript", "SQL"],
+    },
+    {
+      category: "Frontend",
+      skills: [
+        "React",
+        "Next.js",
+        "React Native",
+        "Redux",
+        "Redux Toolkit",
+        "React Router",
+        "Tailwind CSS",
+        "Material UI",
+        "Shadcn UI",
+      ],
+    },
+    {
+      category: "Backend & Databases",
+      skills: [
+        "Node.js",
+        "Express",
+        "NestJS",
+        "PostgreSQL",
+        "MySQL",
+        "MongoDB",
+        "Firebase",
+      ],
+    },
+    {
+      category: "Cloud & DevOps",
+      skills: [
+        "AWS ( EC2, RDS, Lambda, SQS, S3, API Gateway )",
+        "CI/CD (GitHub Actions)",
+      ],
+    },
+    {
+      category: "Tools & Other",
+      skills: ["Git", "GitHub", "Prompt Engineering", "Googling"],
+    },
   ],
   navbar: [{ href: "/", icon: HomeIcon, label: "Home" }],
   contact: {
-    email: "devsourav0809@gmail.com",
+    email: "souravpathakatwork@gmail.com",
     tel: "+91 6294543902",
     social: {
       Resume: {
         name: "Resume",
-        url: "https://drive.google.com/drive/folders/10K6ZtQeY3RXx94pwTQo7KyM_Q28hiDTY?usp=sharing",
+        url: "https://drive.google.com/file/d/1u66jRsi1M5ZEly-yHfnoYKUNP1XLhXvd/view?usp=sharing",
         icon: NotebookIcon,
 
         navbar: true,
@@ -80,7 +91,7 @@ export const DATA = {
 
       Email: {
         name: "Send Email",
-        url: "mailto:devsourav0809@gmail.com",
+        url: "mailto:souravpathakatwork@gmail.com",
         icon: Icons.email,
         navbar: true,
       },
@@ -89,6 +100,22 @@ export const DATA = {
 
   work: [
     {
+      company: "Ocean Friends",
+      href: "https://oceanfriends.ai",
+      badges: [],
+      location: "Remote",
+      title: "Software Engineer",
+      logoUrl: "/oceanFriendsLogo.png",
+      start: "Apr 2026",
+      end: "Present",
+      description: `
+              • Owned the clinical documentation module, the platform’s most-used feature where therapists spend ~90% of their time; re-architected its APIs with well-defined request flows, automatic retries, and Sentry-based logging and monitoring, cutting failed API requests by ~40% and hardening product stability.
+              • Shipped an AI voice-to-note engine using Whisper and Claude that turns therapists’ spoken sessions into structured clinical documentation, quickly becoming one of the most-used features on the platform through strong therapist adoption.
+              • Built a configurable template builder for clinical documentation with tables, images, checkboxes, and custom sections, letting therapists track sessions and patient progress in formats tailored to their own clinical workflows.
+              • Engineered an AI-powered goal management system with structured goal generation, personalized goal recommendations, and a reusable Goals Library with smart filters by patient age, diagnosis, and other clinical criteria, helping therapists find relevant goals and standardize them across patients.
+              • Enhanced documentation UI/UX across web and mobile (iOS and Android) applications, improving the therapist experience through workflow refinements; optimized application performance with lazy loading, reduced redundant API calls, persistent state management, and component refactoring.`,
+    },
+    {
       company: "Sharpener",
       href: "https://www.sharpener.tech/",
       badges: [],
@@ -96,8 +123,21 @@ export const DATA = {
       title: "SDE 1",
       logoUrl: "/sharpenerLogo.png",
       start: "Nov 2024",
-      end: "Current",
-      description: "",
+      end: "Mar 2026",
+      description: `
+              • Built an AI exam evaluation platform using Gemini, Lambda, and SQS that grades over 100 student answer sheets in less than 10 minutes and provides detailed feedback for every student answer and each question.
+              • Rebuilt the landing page using Next.js and ShadCN UI, increasing performance score from 40% to over 90%, resulting in better UX, speed, and SEO.
+              • Created an Internal PR reviewer using Gemini, LangChain, LangGraph, and LangSmith that automatically checked pull requests and suggested code improvements to speed up and simplify the review process.
+              • Built a separate Auth Service using a microservice approach to handle login across multiple products, making authentication easier to manage and scale.
+              • Developed a Mentor Activity Tracker to monitor mentor performance, including tracking classes taken, missed, and canceled. Integrated student feedback for live classes and mock interviews, providing mentors with insights to improve. cron jobs for automated tracking.
+              • Enabled Zero Downtime Deployment for frontend applications, allowing seamless feature releases and bug fixes without server downtime, ensuring a smooth user experience.
+              • Developed an AI-powered communication task by using Google Speech-to-Text, Text-to-Speech, and Gemini, enabling students to practice spoken English and receive real-time, friendly feedback to improve their communication skills.
+              • Revamped the Task Page UI/UX, optimizing performance to reduce page load time by 45% and increase user retention by 60% resulting in a smoother and more engaging experience.
+              • Added live chat support using Chatwoot with smart routing to connect students to the right agent faster. Also set up alerts using AWS Lambda, SQS, and API Gateway to notify users when an agent replies.
+              • Built an Interactive Guide for SnapIt AI Resume Maker with Shepherd.js, reducing onboarding costs by $900 annually.
+              • Developed Dynamic Feedback Forms that adapt based on different conditions, ensuring seamless data collection from students. Designed an engaging dashboard with multiple filters to analyze feedback efficiently.
+              • Created a Bento Grid Layout for the dashboard — admin can set up the layout and arrange the dashboard cards accordingly.
+              • Done the first set of code reviews, fixed bugs, improved existing features, implemented new features, worked on manual testing, etc.`,
     },
     {
       company: "Sharpener",
@@ -106,9 +146,13 @@ export const DATA = {
       location: "Remote",
       title: "SDE Intern",
       logoUrl: "/sharpenerLogo.png",
-      start: "March 2024",
+      start: "Mar 2024",
       end: "Nov 2024",
-      description: "",
+      description: `
+          • Built a CSS Compiler for students, allowing them to write, test, and visualize CSS code in real-time, making learning more interactive and efficient.
+          • Redesigned 25+ admin dashboard pages using Material UI and Tailwind CSS.
+          • Migrated the Sharpener mobile app from Expo to React Native CLI, improving performance and stability. Integrated Firebase notifications for real-time alerts.
+          • Resolved bugs, enhanced existing features, developed new functionalities, and conducted manual and smoke testing to ensure system reliability.`,
     },
   ],
   education: [
@@ -139,6 +183,74 @@ export const DATA = {
   ],
   projects: [
     {
+      title: "TakeMyNote",
+      href: "https://www.takemynote.online",
+      dates: "Sep 2026 - Present",
+      active: true,
+      description:
+        "A calm, private notebook that works without an account. Rich block editor, 21 free templates and AI writing help with your own OpenAI, Google or Anthropic key. Optional accounts sync notes across devices, and any note can be shared with a public link. Open source and launched on Product Hunt.",
+      technologies: [
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "ShadCN UI",
+        "BlockNote",
+        "Better Auth",
+        "MongoDB",
+        "Vercel Blob",
+      ],
+      links: [
+        {
+          type: "Website",
+          href: "https://www.takemynote.online",
+          icon: <Icons.globe className="size-3" />,
+        },
+        {
+          type: "Source",
+          href: "https://github.com/sourav0809/takemynote",
+          icon: <Icons.github className="size-3" />,
+        },
+        {
+          type: "Product Hunt",
+          href: "https://www.producthunt.com/products/takemynote",
+          icon: <Icons.productHunt className="size-3" />,
+        },
+      ],
+      image: "/takemynote.png",
+      video: "",
+    },
+    {
+      title: "OpenChat",
+      href: "https://openchat.itssourav.online/",
+      dates: "Nov 2025 - Dec 2025",
+      active: true,
+      description:
+        "An AI-powered chat application with real-time streaming responses, multi-session conversations, and agent-based tools for weather, stocks, and Formula 1 insights. Includes secure GitHub & Google OAuth, persistent chat history, and a clean, responsive UI.",
+      technologies: [
+        "Next Js",
+        "Next Auth",
+        "Drizzle ORM",
+        "Neon DB",
+        "Vercel Agent SDK",
+        "TailwindCSS",
+        "ShadCN UI",
+      ],
+      links: [
+        {
+          type: "Website",
+          href: "https://openchat.itssourav.online/",
+          icon: <Icons.globe className="size-3" />,
+        },
+        {
+          type: "Source",
+          href: "https://github.com/sourav0809/openchat",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "/openchat.png",
+      video: "",
+    },
+    {
       title: "RedBubble",
       href: "https://redbubble.vercel.app",
       dates: "Aug 2023 - Sep 2023",
@@ -167,6 +279,39 @@ export const DATA = {
         },
       ],
       image: "/redbubble1.png",
+      video: "",
+    },
+    {
+      title: "Trackify",
+      href: "https://trackify.itssourav.online/",
+      dates: "June 2025 - July 2025",
+      active: true,
+      description:
+        "A fully responsive and modern analytics dashboard built with Next.js, Tailwind CSS, ShadCN, Redux Toolkit featuring real-time charts, user authentication, and layout customization. The backend is powered by Express, TypeScript, and PostgreSQL.",
+      technologies: [
+        "Next.js",
+        "Tailwind CSS",
+        "ShadCN",
+        "Redux Toolkit",
+        "Node.js",
+        "Express",
+        "TypeScript",
+        "PostgreSQL",
+        "Sequelize",
+      ],
+      links: [
+        {
+          type: "Website",
+          href: "https://trackify.itssourav.online/",
+          icon: <Icons.globe className="size-3" />,
+        },
+        {
+          type: "Source",
+          href: "https://github.com/sourav0809/trackify-sales-dashboard",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "/salesDashboard.png",
       video: "",
     },
     {
@@ -228,30 +373,34 @@ export const DATA = {
       image: "/mailbox-1.png",
       video: "",
     },
+  ],
+  recommendations: [
     {
-      title: "The Generics",
-      href: "/",
-      dates: "April 2023 - March 2024",
-      active: true,
-      description:
-        "Movie search app with a user-friendly interface. Users can search for movies, view details, and add them to their favorites. The app uses the TMDB API for movie data and Firebase for user authentication and favorites management.",
-      technologies: [
-        "React",
-        "Redux Toolkit",
-        "Firebase",
-        "Tailwind",
-        "React Router",
-        "Material UI",
-      ],
-      links: [
-        {
-          type: "Website",
-          href: "/",
-          icon: <Icons.globe className="size-3" />,
-        },
-      ],
-      image: "/movie-1.png",
-      video: "",
+      name: "Kaustubh Bhatter",
+      role: "Head of Product and Co-Founder of Sharpener | Ex-Titan (Directi), 123Stores",
+      relationship: "Kaustubh managed Sourav directly",
+      avatarUrl: "/kaustubh.png",
+      linkedinUrl: "https://www.linkedin.com/in/i-kaustubh/",
+      recommendation:
+        "Sourav worked with us as a developer and stood out for his ownership and execution.\n\nHe was quick to learn, comfortable across the stack, and particularly strong in Generative AI use cases. Give him a problem and he'll figure out a way to ship it.\n\nEasy to work with, proactive, and dependable—I'd recommend him to any team looking for a builder.",
+    },
+    {
+      name: "Yash Prasad",
+      role: "Founder at Sharpener | Fixing Education",
+      relationship: "Yash managed Sourav directly",
+      avatarUrl: "/yash.jpeg",
+      linkedinUrl: "https://www.linkedin.com/in/yash-prasad-262457128/",
+      recommendation:
+        "Sourav was one of our best and sincere developer. Always open to feedback and willingness to learn. He has a great hustle mindset and he worked with great ownership in all his tasks.",
+    },
+    {
+      name: "Rajesh Singha Mahapatra",
+      role: "Software Engineer @ VAII | Building AI Products | MERN, AWS, AI Agents",
+      relationship: "Rajesh worked with Sourav on the same team",
+      avatarUrl: "/rajesh.jpeg",
+      linkedinUrl: "https://www.linkedin.com/in/rajeshsmp/",
+      recommendation:
+        "Sourav and I worked together at Sharpener as SDE-1, and I can say with confidence that he is one of the most dedicated and reliable people I have worked with.\n\nHis expertise in the MERN stack and Generative AI is impressive, and what sets him apart is how quickly he can pick up new things and turn them into real working solutions. He has a natural ability to connect technology with real-world problems in a way that actually makes a difference.\n\nSourav took on AI-first projects and delivered results that directly contributed to Sharpener's 2x growth. He consistently managed multiple features at the same time without ever compromising on quality or commitment.\n\nIf you are looking for someone who is flexible, technically strong, and genuinely passionate about what they build, Sourav is your person. Whether it is product development, system architecture, or infrastructure, he brings the same level of ownership and drive to everything he works on.",
     },
   ],
 } as const;
